@@ -13,14 +13,21 @@
       <div class="order-category">
         <span class="order-category-left"><font color="red">*</font>&nbsp;报修类别</span>
         <div class="order-category-right" @click="showCategory">
-          <span>{{category.name}}</span>
+          <span>{{ category.name }}</span>
           <img src="@/assets/icon/ty_icon_pull_down.png" />
         </div>
         <van-popup v-model="showCategoryPopup">
           <span>请选择报修类别</span>
           <van-radio-group v-model="category.id">
             <van-cell-group>
-              <van-cell :title-style="category.id == item.id ? 'color: #ff6016;' : ''" :title="item.name" clickable center @click="selectCategory(item)" v-for="(item, index) in categoryList" :key="index">
+              <van-cell
+                :title-style="category.id == item.id ? 'color: #ff6016;' : ''"
+                :title="item.name"
+                clickable
+                center
+                @click="selectCategory(item)"
+                v-for="(item, index) in categoryList"
+                :key="index">
                 <van-radio :name="item.id">
                   <img slot="icon" slot-scope="props" :src="props.checked ? icon.active : icon.normal" />
                 </van-radio>
@@ -225,11 +232,11 @@ export default {
       this.initWeChat();
     },
     initWeChat: function () {
-      let me = this;
+      const me = this;
       JSSDKLoader().then(wx => {
         me.wx = wx;
-        let url = location.href.split('#')[0];
-        let params = {
+        const url = location.href.split('#')[0];
+        const params = {
           url: url
         };
         wxApi.getSignature(params).then(result => {
@@ -293,7 +300,7 @@ export default {
         this.$toast('请输入联系电话');
         return;
       } else {
-        let regex = /^((0\d{2,3}-\d{7,8})|(1[34578]\d{9}))$/;
+        const regex = /^((0\d{2,3}-\d{7,8})|(1[34578]\d{9}))$/;
         if (!regex.test(this.mobile)) {
           this.$toast('请输入有效的联系电话');
           return;
@@ -308,7 +315,7 @@ export default {
         forbidClick: true,
         message: '提交中...'
       });
-      let params = {
+      const params = {
         category: this.compliantCategoryId,
         compliantTypeId: this.category.id,
         compliantContent: this.compliantContent,
@@ -342,10 +349,10 @@ export default {
       });
     },
     afterRead: function (file, detail) {
-      let me = this;
+      const me = this;
       if (detail.name === 'video') {
         me.video = file;
-        let video = document.createElement('video');
+        const video = document.createElement('video');
         video.setAttribute('src', file.content);
         video.ondurationchange = function () {
           me.video.duration = this.duration;
@@ -372,7 +379,7 @@ export default {
     },
     // 停止录音
     stopRecord: function () {
-      let me = this;
+      const me = this;
       me.wx.stopRecord({
         success: function (res) {
           me.localId = res.localId;
@@ -397,7 +404,7 @@ export default {
     },
     // 上传语音
     uploadVoice: function () {
-      let me = this;
+      const me = this;
       me.wx.uploadVoice({
         localId: me.localId,
         isShowProgressTips: 1,

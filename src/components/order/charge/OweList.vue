@@ -14,9 +14,9 @@
           <td><img :src="icon.normal"/></td>
         </tr>
         <tr align="center" v-for="period in previousPeriod" :key="period.chargeYear">
-          <td @click="select(period)">{{period.chargeYear}}</td>
-          <td @click="select(period)">{{period.totalAccount}}</td>
-          <td @click="select(period)">{{period.chargeArea}}</td>
+          <td @click="select(period)">{{ period.chargeYear }}</td>
+          <td @click="select(period)">{{ period.totalAccount }}</td>
+          <td @click="select(period)">{{ period.chargeArea }}</td>
           <td @click="select(period)" class="radio">
             <van-checkbox v-model="period.checked">
               <img slot="icon" slot-scope="props" :src="props.checked ? icon.active : icon.normal">
@@ -54,9 +54,9 @@ export default {
       }
     },
     doConfirm: function () {
-      let records = [];
+      const records = [];
       for (var index = 0; index < this.previousPeriod.length; index++) {
-        let period = this.previousPeriod[index];
+        const period = this.previousPeriod[index];
         if (period.checked) {
           records.push(period);
         }

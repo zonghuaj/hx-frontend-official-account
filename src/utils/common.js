@@ -30,7 +30,7 @@ export const isPhone = () => {
 };
 // 判断登录
 export const checkLogin = (router, nextPath) => {
-  let userId = common.getStore('userId');
+  const userId = common.getStore('userId');
   if (!userId) {
     router.push('/page/login?fb=' + nextPath);
     return false;
@@ -51,13 +51,13 @@ export const decodeURI = (str) => {
 // 压缩图片
 export function compressImage (src, config) {
   return new Promise((resolve, reject) => {
-    let img = new Image();
+    const img = new Image();
     img.src = src;
     img.onload = function () {
-      let me = this;
+      const me = this;
       let width = me.width;
       let height = me.height;
-      let scale = width / height;
+      const scale = width / height;
       if (config.width && config.height) {
         if (config.width < width) {
           width = config.width;
@@ -76,16 +76,16 @@ export function compressImage (src, config) {
           height = config.height;
         }
       }
-      let canvas = document.createElement('canvas');
+      const canvas = document.createElement('canvas');
       canvas.setAttribute('width', width);
       canvas.setAttribute('height', height);
-      let context = canvas.getContext('2d');
+      const context = canvas.getContext('2d');
       context.drawImage(me, 0, 0, width, height);
       let quality = 0.7;
       if (config.quality) {
         quality = config.quality;
       }
-      let result = canvas.toDataURL('image/jpeg', quality);
+      const result = canvas.toDataURL('image/jpeg', quality);
       resolve(result);
     };
   });

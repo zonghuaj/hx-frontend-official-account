@@ -11,14 +11,21 @@
     <div v-show="listModel">
       <div class="search">
         <div class="search-company">
-          <span>{{company.abbreviationName}}</span>
+          <span>{{ company.abbreviationName }}</span>
           <img src="@/assets/icon/maintain_icon_xl.png" @click="showCompany" />
         </div>
         <van-popup v-model="showCompanyPopup">
           <span>请选择供热公司</span>
           <van-radio-group v-model="company.companyId">
             <van-cell-group>
-              <van-cell :title-style="company.companyId == item.companyId ? 'color: #ff6016;' : ''" :title="item.abbreviationName" clickable center @click="selectCompany(item)" v-for="(item, index) in companyList" :key="index">
+              <van-cell
+                :title-style="company.companyId == item.companyId ? 'color: #ff6016;' : ''"
+                :title="item.abbreviationName"
+                clickable
+                center
+                @click="selectCompany(item)"
+                v-for="(item, index) in companyList"
+                :key="index">
                 <van-radio :name="item.companyId">
                   <img slot="icon" slot-scope="props" :src="props.checked ? icon.active : icon.normal" />
                 </van-radio>
@@ -27,14 +34,21 @@
           </van-radio-group>
         </van-popup>
         <div class="search-area">
-          <span>{{area.name}}</span>
+          <span>{{ area.name }}</span>
           <img src="@/assets/icon/maintain_icon_xl.png" @click="showArea" />
         </div>
         <van-popup v-model="showAreaPopup">
           <span>请选择地区</span>
           <van-radio-group v-model="area.id">
             <van-cell-group>
-              <van-cell :title-style="area.id == item.id ? 'color: #ff6016;' : ''" :title="item.name" clickable center @click="selectArea(item)" v-for="(item, index) in areaList" :key="index">
+              <van-cell
+                :title-style="area.id == item.id ? 'color: #ff6016;' : ''"
+                :title="item.name"
+                clickable
+                center
+                @click="selectArea(item)"
+                v-for="(item, index) in areaList"
+                :key="index">
                 <van-radio :name="item.id">
                   <img slot="icon" slot-scope="props" :src="props.checked ? icon.active : icon.normal" />
                 </van-radio>
@@ -47,7 +61,7 @@
         <div class="outlets-name">
           <div class="outlets-name-left">
             <img src="@/assets/icon/maintain_icon_site.png" />
-            <span>{{item.outletsName}}</span>
+            <span>{{ item.outletsName }}</span>
           </div>
           <span class="outlets-name-right" style="border: 1px solid #ff6016;" @click="goArea(item)">服务范围</span>
         </div>
@@ -55,7 +69,7 @@
           <div class="outlets-address-left">
             <img src="@/assets/icon/maintain_sm_icon_dz.png" />
             <span>地址：</span>
-            <span>{{item.outletsAddress}}</span>
+            <span>{{ item.outletsAddress }}</span>
           </div>
           <div class="outlets-address-right" @click="locate(item)">
             <img src="@/assets/icon/maintain_icon_dw.png" />
@@ -65,7 +79,7 @@
         <div class="outlets-telephone">
           <img src="@/assets/icon/maintain_sm_icon_dh.png" />
           <span>交费咨询：</span>
-          <span><a :href="'tel:' + item.outletsTelephone">{{item.outletsTelephone}}</a></span>
+          <span><a :href="'tel:' + item.outletsTelephone">{{ item.outletsTelephone }}</a></span>
         </div>
         <div class="outlets-telephone">
           <img src="@/assets/icon/maintain_sm_icon_dh.png" />
@@ -79,17 +93,17 @@
       <div v-if="outlets">
         <div class="map-outlets-name">
           <img src="@/assets/icon/maintain_icon_site.png" />
-          <span>{{outlets.outletsName}}</span>
+          <span>{{ outlets.outletsName }}</span>
         </div>
         <div class="map-outlets-address">
           <img src="@/assets/icon/maintain_sm_icon_dz.png" />
           <span>地址：</span>
-          <span>{{outlets.outletsAddress}}</span>
+          <span>{{ outlets.outletsAddress }}</span>
         </div>
         <div class="map-outlets-telephone">
           <img src="@/assets/icon/maintain_sm_icon_dh.png" />
           <span>交费咨询：</span>
-          <span><a :href="'tel:' + outlets.outletsTelephone">{{outlets.outletsTelephone}}</a></span>
+          <span><a :href="'tel:' + outlets.outletsTelephone">{{ outlets.outletsTelephone }}</a></span>
         </div>
         <div class="map-outlets-telephone">
           <img src="@/assets/icon/maintain_sm_icon_dh.png" />
@@ -99,7 +113,7 @@
         <div class="map-outlets-area">
           <img src="@/assets/icon/maintain_sm_icon_qy.png" />
           <span>服务范围：</span>
-          <span>{{outlets.serviceArea}}</span>
+          <span>{{ outlets.serviceArea }}</span>
         </div>
         <!--
         <input class="btn-navigate" type="button" value="到这去" @click="navigate" />
@@ -201,7 +215,7 @@ export default {
       this.getOutletsList();
     },
     getOutletsList: function () {
-      let params = {
+      const params = {
         typeId: 1,
         companyId: this.company.companyId,
         areaId: this.area.id
@@ -252,7 +266,7 @@ export default {
     locate: function (item) {
       this.outlets = item;
       this.setListModel(false);
-      let marker = new window.AMap.Marker({
+      const marker = new window.AMap.Marker({
         position: new window.AMap.LngLat(this.outlets.longitude, this.outlets.latitude),
         title: this.outlets.outletsName
       });

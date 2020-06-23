@@ -16,7 +16,7 @@
 
 <script>
 export default {
-  name: 'app',
+  name: 'App',
   components: {
   },
   data () {
@@ -25,11 +25,11 @@ export default {
     };
   },
   created: function () {
-    let path = window.location.href;
-    let suffix = path.substring(path.indexOf('#') + 1, path.length);
+    const path = window.location.href;
+    const suffix = path.substring(path.indexOf('#') + 1, path.length);
     this.isHomePage = suffix.startsWith('/homePage');
     window.addEventListener('beforeunload', () => {
-      let params = this.$route.params;
+      const params = this.$route.params;
       if (Object.keys(params).length !== 0) {
         sessionStorage.setItem('params', JSON.stringify(params));
       }
@@ -37,7 +37,7 @@ export default {
   },
   watch: {
     '$route' (to, from) {
-      let path = to.path;
+      const path = to.path;
       this.isHomePage = path.startsWith('/homePage');
     }
   },

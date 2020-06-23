@@ -56,7 +56,8 @@ if (uid && sid) {
   for (let index = 0; index < params.length; index++) {
     let param = params[index].split('=')
     if (param[0] === 'code') {
-      code = param[1]
+      code = param[1];
+      sessionStorage.setItem('code', response.data.data.uid);
     }
   }
   
@@ -87,15 +88,13 @@ if (uid && sid) {
   } else {
     // 开发环境
     if (process.env.NODE_ENV === 'development') {
-      // 张金山
+      
       axios.defaults.headers.uid = 409539
       axios.defaults.headers.sid = 'oOYLPv3tRTc0G6v9jVhU8lvyUexU'
       
-      // 张凌
       // axios.defaults.headers.uid = 1
       // axios.defaults.headers.sid = 'oOYLPvy-CvwlOOXqwNtmrNX1SmtI'
       
-      // 费强
       // axios.defaults.headers.uid = 764
       // axios.defaults.headers.sid = 'oOYLPvzYZxOIRcong5cMkMIq9t64'
     }

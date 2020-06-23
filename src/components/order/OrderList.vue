@@ -12,17 +12,17 @@
           <img src="@/assets/icon/dbyw_grbx.png" v-if="item.businessCategoryId == 2" />
           <img src="@/assets/icon/dbyw_fwts.png" v-if="item.businessCategoryId == 3" />
           <img src="@/assets/icon/dbyw_tgsq.png" v-if="item.businessCategoryId == 4" />
-          <span>{{item.name}}</span>
+          <span>{{ item.name }}</span>
         </div>
-        <span class="dbyw-title-right">单据编号：{{item.pno}}</span>
+        <span class="dbyw-title-right">单据编号：{{ item.pno }}</span>
       </div>
       <div class="dbyw-address">
         <span class="dbyw-address-left">房屋地址</span>
-        <span class="dbyw-address-right">{{item.address}}</span>
+        <span class="dbyw-address-right">{{ item.address }}</span>
       </div>
       <div class="dbyw-time">
         <span class="dbyw-time-left">申请时间</span>
-        <span class="dbyw-time-right">{{item.time}}</span>
+        <span class="dbyw-time-right">{{ item.time }}</span>
       </div>
       <div class="dbyw-status">
         <span class="dbyw-status-left">当前状态</span>
@@ -32,7 +32,7 @@
             <img src="@/assets/icon/dbyw_wpd.png" v-if="item.businessCategoryId == 2" />
             <img src="@/assets/icon/dbyw_wpd.png" v-if="item.businessCategoryId == 3" />
             <img src="@/assets/icon/dbyw_wpd.png" v-if="item.businessCategoryId == 4" />
-            <span>{{item.status}}</span>
+            <span>{{ item.status }}</span>
           </div>
           <div class="dbyw-status-right-right" @click="viewDetails(item)">
             <span>查看详情</span>

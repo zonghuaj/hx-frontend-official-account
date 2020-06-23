@@ -3,7 +3,7 @@
     <div class="search">
       <div class="house-company">
         <span class="house-company-left">供热公司</span>
-        <span class="house-company-right">{{company.companyName}}</span>
+        <span class="house-company-right">{{ company.companyName }}</span>
       </div>
       <div class="house-code">
         <span class="house-code-left">供热卡号</span>
@@ -23,27 +23,27 @@
         </div>
         <div class="house-item" style="border-top: none;">
           <span class="house-item-left">房屋地址</span>
-          <span class="house-item-right">{{house.hotAddress}}</span>
+          <span class="house-item-right">{{ house.hotAddress }}</span>
         </div>
         <div class="house-item">
           <span class="house-item-left">小区楼号</span>
-          <span class="house-item-right">{{house.regionName + house.buildingName}}</span>
+          <span class="house-item-right">{{ house.regionName + house.buildingName }}</span>
         </div>
         <div class="house-item">
           <span class="house-item-left">供热公司</span>
-          <span class="house-item-right">{{house.companyName}}</span>
+          <span class="house-item-right">{{ house.companyName }}</span>
         </div>
         <div class="house-item">
           <span class="house-item-left">供热卡号</span>
-          <span class="house-item-right">{{house.cardCode}}</span>
+          <span class="house-item-right">{{ house.cardCode }}</span>
         </div>
         <div class="house-item">
           <span class="house-item-left">户主姓名</span>
-          <span class="house-item-right">{{house.maskCustomerName == '无' ? '' : house.maskCustomerName}}</span>
+          <span class="house-item-right">{{ house.maskCustomerName == '无' ? '' : house.maskCustomerName }}</span>
         </div>
         <div class="house-item">
           <span class="house-item-left">房屋面积</span>
-          <span class="house-item-right">{{house.areas[0].propertyArea}}m²</span>
+          <span class="house-item-right">{{ house.areas[0].propertyArea }}m²</span>
         </div>
       </div>
       <div class="house">
@@ -117,16 +117,16 @@ export default {
       }
       this.house = null;
       this.isDefault = false;
-      let params = {
+      const params = {
         companyId: this.company.companyId,
         cardCode: this.cardCode
       };
       getCardHouse(params).then(result => {
         if (result.data.status === 1) {
-          let houseList = result.data.data;
+          const houseList = result.data.data;
           if (houseList.length > 0) {
-            let house = houseList[0];
-            let maskCustomerName = house.maskCustomerName;
+            const house = houseList[0];
+            const maskCustomerName = house.maskCustomerName;
             if (maskCustomerName && maskCustomerName !== '无') {
               house.relationLabel = maskCustomerName.charAt(maskCustomerName.length - 1);
             } else {
@@ -142,14 +142,14 @@ export default {
       });
     },
     doSave: function () {
-      let reg = /^.{1,5}$/;
+      const reg = /^.{1,5}$/;
       if (reg.test(this.house.relationLabel)) {
         this.$toast.loading({
           duration: 0,
           forbidClick: true,
           message: '保存中...'
         });
-        let params = {
+        const params = {
           relationLabel: this.house.relationLabel,
           isDefault: this.isDefault ? 1 : 0
         };

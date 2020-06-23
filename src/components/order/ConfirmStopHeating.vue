@@ -5,7 +5,7 @@
       <span>停供确认</span>
     </div>
     <div class="notice">
-      用热户（房主）<span class="underline">{{record.ownerName}}</span>，身份证号：<span class="underline">{{record.identifyNo}}</span>，是<span class="underline">{{curHouse.hotAddress}}</span>房主，电话号码为：<span class="underline">{{record.telephone}}</span>。本人已经阅读并了解以下《暂停供热用户须知》及《停供协议》内容；因本人需要，现申请<span class="underline">{{curHouse.hotAddress}}</span>{{other.chargeMonth}}供热年度暂时停供供热。
+      用热户（房主）<span class="underline">{{ record.ownerName }}</span>，身份证号：<span class="underline">{{ record.identifyNo }}</span>，是<span class="underline">{{ curHouse.hotAddress }}</span>房主，电话号码为：<span class="underline">{{ record.telephone }}</span>。本人已经阅读并了解以下《暂停供热用户须知》及《停供协议》内容；因本人需要，现申请<span class="underline">{{ curHouse.hotAddress }}</span>{{ other.chargeMonth }}供热年度暂时停供供热。
       <p class="notice-title">暂停供热用户须知</p>
       1、用热户保证上传的所有证件为真实的，所留电话号码为本人常用号码，否则由此引起相关的法律责任及社会影响由用热户自行承担；
       <br />
@@ -21,7 +21,7 @@
       <br />
       7、用热户原因造成供热公司不能进行阀门关闭或断管处理的，即停供办理没有成功的，要按照全额采暖费补交。
       <p class="notice-title">停供协议</p>
-      一、甲方接受乙方针对<span class="underline">{{curHouse.hotAddress}}</span>（用户编号<span class="underline">{{other.userCode}}</span>）房间暂停供热的申请，停供期限为{{other.sDate}}起至{{other.eDate}}止，如乙方在以后每年10月15日前未交纳全额采暖费，或未接到甲方的交费通知，甲方视乙方停供期限顺延。
+      一、甲方接受乙方针对<span class="underline">{{ curHouse.hotAddress }}</span>（用户编号<span class="underline">{{ other.userCode }}</span>）房间暂停供热的申请，停供期限为{{ other.sDate }}起至{{ other.eDate }}止，如乙方在以后每年10月15日前未交纳全额采暖费，或未接到甲方的交费通知，甲方视乙方停供期限顺延。
       <br />
       二、暂停供热期间，甲方应对乙方室外的供热设施进行巡查，发现故障要及时告知乙方处理。
       <br />

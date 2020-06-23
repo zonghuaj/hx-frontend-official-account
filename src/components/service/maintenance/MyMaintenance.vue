@@ -9,7 +9,7 @@
       <div class="outlets-name">
         <div class="outlets-name-left">
           <img src="@/assets/icon/maintain_icon_site.png" />
-          <span>{{outlets.outletsName}}</span>
+          <span>{{ outlets.outletsName }}</span>
         </div>
         <span class="outlets-name-right" style="border: 1px solid #ff6016;" @click="goTimeArea">服务时间及范围</span>
       </div>
@@ -17,7 +17,7 @@
         <div class="outlets-address-left">
           <img src="@/assets/icon/maintain_sm_icon_dz.png" />
           <span>地址：</span>
-          <span>{{outlets.outletsAddress}}</span>
+          <span>{{ outlets.outletsAddress }}</span>
         </div>
         <div class="outlets-address-right" @click="locate">
           <img src="@/assets/icon/maintain_icon_dw.png" />
@@ -27,7 +27,7 @@
       <div class="outlets-telephone">
         <img src="@/assets/icon/maintain_sm_icon_dh.png" />
         <span>电话：</span>
-        <span><a :href="'tel:' + outlets.outletsTelephone">{{outlets.outletsTelephone}}</a></span>
+        <span><a :href="'tel:' + outlets.outletsTelephone">{{ outlets.outletsTelephone }}</a></span>
       </div>
     </div>
     <div class="btn-view-more" @click="goMaintenanceList">

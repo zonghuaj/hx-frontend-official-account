@@ -3,7 +3,7 @@
     <div class="search">
       <div class="house-company">
         <span class="house-company-left">供热公司</span>
-        <span class="house-company-right">{{company.companyName}}</span>
+        <span class="house-company-right">{{ company.companyName }}</span>
       </div>
       <div class="house-mobile">
         <span class="house-mobile-left">预留手机号</span>
@@ -14,7 +14,7 @@
         <div class="house-yzm-right">
           <input class="house-yzm-right-left" type="text" placeholder="请输入手机验证码" v-model="verifyCode" />
           <div class="house-yzm-right-right" @click="show">
-            <span>{{yzm}}</span>
+            <span>{{ yzm }}</span>
           </div>
         </div>
       </div>
@@ -23,7 +23,7 @@
       </van-popup>
     </div>
     <van-button class="btn-search" text="查询" @click="doSearch" />
-    <span class="total" v-if="total > 0">共&nbsp;<font color="red">{{total}}</font>&nbsp;个房屋</span>
+    <span class="total" v-if="total > 0">共&nbsp;<font color="red">{{ total }}</font>&nbsp;个房屋</span>
     <div class="house-list" v-if="houseList.length > 0">
       <van-collapse v-model="activeName" accordion>
         <van-list>
@@ -32,21 +32,21 @@
             <div class="house-item">
               <div class="house-item-left">
                 <span class="house-item-left-left">小区楼号</span>
-                <span class="house-item-left-right">{{item.regionName + item.buildingName}}</span>
+                <span class="house-item-left-right">{{ item.regionName + item.buildingName }}</span>
               </div>
               <div class="house-item-right">
                 <span class="house-item-left-left">供热卡号</span>
-                <span class="house-item-left-right">{{item.cardCode}}</span>
+                <span class="house-item-left-right">{{ item.cardCode }}</span>
               </div>
             </div>
             <div class="house-item">
               <div class="house-item-left">
                 <span class="house-item-left-left">户主姓名</span>
-                <span class="house-item-left-right">{{item.maskCustomerName == '无' ? '' : item.maskCustomerName}}</span>
+                <span class="house-item-left-right">{{ item.maskCustomerName == '无' ? '' : item.maskCustomerName }}</span>
               </div>
               <div class="house-item-right">
                 <span class="house-item-left-left">房屋面积</span>
-                <span class="house-item-left-right">{{item.areas[0].propertyArea}}m²</span>
+                <span class="house-item-left-right">{{ item.areas[0].propertyArea }}m²</span>
               </div>
             </div>
             <div class="house-label">
@@ -140,7 +140,7 @@ export default {
         this.showPopup = false;
         this.time = 60;
         this.timer();
-        let params = {
+        const params = {
           mobile: this.mobile
         };
         postVerifyCode(params).then(result => {
@@ -174,16 +174,16 @@ export default {
       this.houseList = [];
       this.isDefault = false;
       this.activeName = null;
-      let params = {
+      const params = {
         companyId: this.company.companyId,
         mobile: this.mobile,
         verifyCode: this.verifyCode
       };
       getMoblieHouse(params).then(result => {
         if (result.data.status === 1) {
-          let houseList = result.data.data;
+          const houseList = result.data.data;
           for (let index = 0; index < houseList.length; index++) {
-            let maskCustomerName = houseList[index].maskCustomerName;
+            const maskCustomerName = houseList[index].maskCustomerName;
             if (maskCustomerName && maskCustomerName !== '无') {
               houseList[index].relationLabel = maskCustomerName.charAt(maskCustomerName.length - 1);
             } else {
@@ -201,14 +201,14 @@ export default {
       });
     },
     doSave: function (item) {
-      let reg = /^.{1,5}$/;
+      const reg = /^.{1,5}$/;
       if (reg.test(item.relationLabel)) {
         this.$toast.loading({
           duration: 0,
           forbidClick: true,
           message: '保存中...'
         });
-        let params = {
+        const params = {
           relationLabel: item.relationLabel,
           isDefault: this.isDefault ? 1 : 0
         };

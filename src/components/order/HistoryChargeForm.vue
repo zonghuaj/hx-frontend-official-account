@@ -13,71 +13,71 @@
         </div>
         <div class="line">
           <div class="label">业务类别</div>
-          <div class="input tw1">{{record.businessType}}</div>
+          <div class="input tw1">{{ record.businessType }}</div>
           <div class="label">订单编号</div>
-          <div class="input tw2">{{record.poDispNo}}</div>
+          <div class="input tw2">{{ record.poDispNo }}</div>
         </div>
         <div class="line">
           <div class="label">交费年度</div>
-          <div class="input tw1">{{record.chargeMonth}}</div>
+          <div class="input tw1">{{ record.chargeMonth }}</div>
           <div class="label">交费面积</div>
-          <div class="input tw2">{{record.area}}m²</div>
+          <div class="input tw2">{{ record.area }}m²</div>
         </div>
       </div>
-       <div class="invoInfo" v-for="(invoice, index) in record.invoices" :key="index">
+      <div class="invoInfo" v-for="(invoice, index) in record.invoices" :key="index">
         <div class="title"></div>
         <div class="content">
           <div class="line">
             <div class="label">交费年度</div>
-            <div class="input">{{record.chargeMonth}}</div>
+            <div class="input">{{ record.chargeMonth }}</div>
           </div>
           <div class="line">
             <div class="label">发票代码</div>
-            <div class="input">{{invoice.invoiceCode}}</div>
+            <div class="input">{{ invoice.invoiceCode }}</div>
           </div>
           <div class="line">
             <div class="label">发票编码</div>
-            <div class="input">{{invoice.invoiceNumber}}</div>
+            <div class="input">{{ invoice.invoiceNumber }}</div>
           </div>
           <div class="line">
             <div class="label">交费方式</div>
-            <div class="input">{{getInvoiceType(invoice.invoiceTypeId)}}</div>
+            <div class="input">{{ getInvoiceType(invoice.invoiceTypeId) }}</div>
           </div>
           <div class="line">
             <div class="label">交费单价</div>
-            <div class="input">{{invoice.invoiceUnitPrice}}元/m²</div>
+            <div class="input">{{ invoice.invoiceUnitPrice }}元/m²</div>
           </div>
           <div class="line">
             <div class="label">交费面积</div>
-            <div class="input">{{invoice.invoiceArea}}m²</div>
+            <div class="input">{{ invoice.invoiceArea }}m²</div>
           </div>
           <div class="line">
             <div class="label">交费金额</div>
-            <div class="input">{{invoice.invoiceAmount}}元</div>
+            <div class="input">{{ invoice.invoiceAmount }}元</div>
           </div>
           <div class="line">
             <div class="label">发票抬头</div>
-            <div class="input">{{invoice.pTitle}}</div>
+            <div class="input">{{ invoice.pTitle }}</div>
           </div>
           <div class="line" v-if="invoice.invoiceTitleTypeId == 2">
             <div class="label">税号</div>
-            <div class="input">{{invoice.pTaxNo}}</div>
+            <div class="input">{{ invoice.pTaxNo }}</div>
           </div>
           <div class="line" v-if="invoice.invoiceTitleTypeId == 2 && invoice.expanded">
             <div class="label">开户行</div>
-            <div class="input">{{invoice.pBankName}}</div>
+            <div class="input">{{ invoice.pBankName }}</div>
           </div>
           <div class="line" v-if="invoice.invoiceTitleTypeId == 2 && invoice.expanded">
             <div class="label">账号</div>
-            <div class="input">{{invoice.pAccountNo}}</div>
+            <div class="input">{{ invoice.pAccountNo }}</div>
           </div>
           <div class="line" v-if="invoice.invoiceTitleTypeId == 2 && invoice.expanded">
             <div class="label">地址</div>
-            <div class="input">{{invoice.pAddress}}</div>
+            <div class="input">{{ invoice.pAddress }}</div>
           </div>
           <div class="line" v-if="invoice.invoiceTitleTypeId == 2 && invoice.expanded">
             <div class="label">电话</div>
-            <div class="input">{{invoice.pTelephone}}</div>
+            <div class="input">{{ invoice.pTelephone }}</div>
           </div>
           <div class="fp-toggle" v-if="invoice.invoiceTitleTypeId == 2">
             <img src="@/assets/icon/ty_icon_retract.png" @click="toggleInvoice(invoice)" v-if="invoice.expanded">
@@ -93,12 +93,12 @@
     <div class="summary">
       <div class="invoQty">
         <span class="span1">发票数量</span>
-        <span class="span2">{{record.invoiceQty}}</span>
+        <span class="span2">{{ record.invoiceQty }}</span>
         <span class="span3">张</span>
       </div>
       <div class="orderAmount">
         <span class="span1">订单金额</span>
-        <span class="span2">{{record.amount}}</span>
+        <span class="span2">{{ record.amount }}</span>
         <span class="span3">元</span>
       </div>
     </div>
@@ -162,7 +162,7 @@ export default {
     initPage: function () {
       orderApi.getPaymentOrderDetail(this.detailId).then(result => {
         if (result.status === 1) {
-          let record = result.data;
+          const record = result.data;
           // 发票数量
           record.invoiceQty = record.invoices.length;
           this.record = record;

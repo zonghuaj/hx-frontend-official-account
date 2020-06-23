@@ -2,28 +2,28 @@
   <div id="wrap">
     <div class="header">
       <img class="goBack" @click="goBack()" src="@/assets/icon/ty_icon_back.png"/>
-      <div class="title">{{this.payParams ? '供热交费单（' + this.payParams.orderNo + '）详情' : '确认订单（3/5）'}}</div>
+      <div class="title">{{ this.payParams ? '供热交费单（' + this.payParams.orderNo + '）详情' : '确认订单（3/5）' }}</div>
     </div>
     <house-card :curHouse="curHouse"></house-card>
     <div class="category" v-if="isCurrentYear == 1 && isHouse == 1">
       <img src="@/assets/icon/pay_chaeckbox_selected.png">
-      <span>{{paymentMethodText}}</span>
+      <span>{{ paymentMethodText }}</span>
     </div>
     <div class="yearCard" v-for="period in payingPeriod" :key="period.chargeYear">
       <div class="orderIntro">
         <img src="@/assets/icon/ty_icon_clock.png">
-        <div class="year">{{period.chargeYear}}年度</div>
+        <div class="year">{{ period.chargeYear }}年度</div>
         <p class="sqtLabel">交费面积</p>
-        <span class="sqtValue">{{period.chargeArea}}m²</span>
+        <span class="sqtValue">{{ period.chargeArea }}m²</span>
       </div>
       <div class="invoInfo" v-if="period.visibility.selfPayCard">
         <div class="title"></div>
         <div class="content">
           <div class="line u">
             <div class="column bold first">自费</div>
-            <div class="column bold">{{period.selfPay.area}}m²</div>
-            <div class="column bold">{{period.ceSubsidyPrice}}元/m²</div>
-            <div class="column bold">{{period.selfPay.chargeAmount}}元</div>
+            <div class="column bold">{{ period.selfPay.area }}m²</div>
+            <div class="column bold">{{ period.ceSubsidyPrice }}元/m²</div>
+            <div class="column bold">{{ period.selfPay.chargeAmount }}元</div>
           </div>
           <div class="line">
             <div class="column first">交费方式</div>
@@ -33,20 +33,20 @@
           </div>
           <div class="line">
             <div class="label">发票抬头</div>
-            <div class="input">{{period.selfPay.title}}</div>
+            <div class="input">{{ period.selfPay.title }}</div>
           </div>
         </div>
         <div class="bottom"><img src="@/assets/icon/invoice-foot.png"></div>
       </div>
 
-       <div class="invoInfo" v-if="period.visibility.reimburseCard" v-for="(reimbursePart, index) in period.reimbursePartArray" :key="index">
+      <div class="invoInfo" v-if="period.visibility.reimburseCard" v-for="(reimbursePart, index) in period.reimbursePartArray" :key="index">
         <div class="title"></div>
         <div class="content">
           <div class="line u">
-            <div class="column bold first">{{isHouse == 0 ? '非住宅' : '报销'}}</div>
-            <div class="column bold">{{reimbursePart.area}}m²</div>
-            <div class="column bold">{{period.price}}元/m²</div>
-            <div class="column bold">{{reimbursePart.chargeAmount}}元</div>
+            <div class="column bold first">{{ isHouse == 0 ? '非住宅' : '报销' }}</div>
+            <div class="column bold">{{ reimbursePart.area }}m²</div>
+            <div class="column bold">{{ period.price }}元/m²</div>
+            <div class="column bold">{{ reimbursePart.chargeAmount }}元</div>
           </div>
           <div class="line">
             <div class="column first">交费方式</div>
@@ -56,27 +56,27 @@
           </div>
           <div class="line">
             <div class="label">发票抬头</div>
-            <div class="input">{{reimbursePart.title}}</div>
+            <div class="input">{{ reimbursePart.title }}</div>
           </div>
           <div class="line" v-if="reimbursePart.titleCategory == 'business'">
             <div class="label"><span>*</span>税号</div>
-            <div class="input">{{reimbursePart.taxNo}}</div>
+            <div class="input">{{ reimbursePart.taxNo }}</div>
           </div>
           <div class="line" v-if="reimbursePart.titleCategory == 'business' && reimbursePart.showMoreFields">
             <div class="label">开户银行</div>
-            <div class="input">{{reimbursePart.bank}}</div>
+            <div class="input">{{ reimbursePart.bank }}</div>
           </div>
           <div class="line" v-if="reimbursePart.titleCategory == 'business' && reimbursePart.showMoreFields">
             <div class="label">账号</div>
-            <div class="input">{{reimbursePart.bankAccount}}</div>
+            <div class="input">{{ reimbursePart.bankAccount }}</div>
           </div>
           <div class="line" v-if="reimbursePart.titleCategory == 'business' && reimbursePart.showMoreFields">
             <div class="label">地址</div>
-            <div class="input">{{reimbursePart.address}}</div>
+            <div class="input">{{ reimbursePart.address }}</div>
           </div>
           <div class="line" v-if="reimbursePart.titleCategory == 'business' && reimbursePart.showMoreFields">
             <div class="label">电话</div>
-            <div class="input">{{reimbursePart.mobile}}</div>
+            <div class="input">{{ reimbursePart.mobile }}</div>
           </div>
           <div class="btnShowMore" v-if="reimbursePart.titleCategory == 'business'">
             <img src="@/assets/icon/ty_icon_retract.png" @click="showMoreField(reimbursePart)" v-if="reimbursePart.showMoreFields">
@@ -84,7 +84,7 @@
           </div>
           <div class="line u">
             <div class="label">报销人</div>
-            <div class="input">{{reimbursePart.reimbursementApplicant}}</div>
+            <div class="input">{{ reimbursePart.reimbursementApplicant }}</div>
           </div>
         </div>
         <div class="bottom"><img src="@/assets/icon/invoice-foot.png"></div>
@@ -93,18 +93,18 @@
     <div class="summary">
       <div class="invoQty">
         <span class="span1">发票数量</span>
-        <span class="span2">{{invoQty}}</span>
+        <span class="span2">{{ invoQty }}</span>
         <span class="span3">张</span>
       </div>
       <div class="orderAmount">
         <span class="span1">订单金额</span>
-        <span class="span2">{{orderAmount}}</span>
+        <span class="span2">{{ orderAmount }}</span>
         <span class="span3">元</span>
       </div>
     </div>
     <van-button class="btnNext" text="立即支付" @click="dopay" />
     <div class="remark" v-if="!orderId">订单有效期<span>24小时</span>，逾期自动删除</div>
-    <span class="time" v-if="orderId">剩余支付时间：<font color="red">{{time}}</font></span>
+    <span class="time" v-if="orderId">剩余支付时间：<font color="red">{{ time }}</font></span>
     <div class="btn-delete" @click="doDelete" v-if="orderId">
       <img src="@/assets/icon/ty_icon_del.png" />
       <span>删除该订单</span>
@@ -233,7 +233,7 @@ export default {
       if (paymentMethod === 'selfPay') {
         let totalAmount = 0;
         for (let idx = 0; idx < this.payingPeriod.length; idx++) {
-          let period = this.payingPeriod[idx];
+          const period = this.payingPeriod[idx];
           period.selfPay.chargeAmount = this.float.multiply(period.ceSubsidyPrice, period.selfPay.area);
           period.amount = period.selfPay.chargeAmount;
           totalAmount = this.float.add(totalAmount, period.selfPay.chargeAmount);
@@ -243,20 +243,20 @@ export default {
         this.paymentMethodText = '全部自费';
       } else if (paymentMethod === 'reimbursePart') {
         let partQty = 0; // 报销发票数量
-        let selfQty = this.payingPeriod.length; // 自费发票数量
+        const selfQty = this.payingPeriod.length; // 自费发票数量
         let totalAmount = 0; // 订单总金额
         for (let idx = 0; idx < this.payingPeriod.length; idx++) {
-          let period = this.payingPeriod[idx];
+          const period = this.payingPeriod[idx];
           let periodAmount = 0;
           // 自费部分
           period.selfPay.chargeAmount = this.float.multiply(period.ceSubsidyPrice, period.selfPay.area);
           totalAmount = this.float.add(totalAmount, period.selfPay.chargeAmount);
           periodAmount = this.float.add(periodAmount, period.selfPay.chargeAmount);
           // 报销部分
-          let reimbursePartQty = period.reimbursePartArray.length;
+          const reimbursePartQty = period.reimbursePartArray.length;
           partQty += reimbursePartQty;
           for (let i = 0; i < reimbursePartQty; i++) {
-            let reimbursePart = period.reimbursePartArray[i];
+            const reimbursePart = period.reimbursePartArray[i];
             reimbursePart.chargeAmount = this.float.multiply(period.price, reimbursePart.area);
             totalAmount = this.float.add(totalAmount, reimbursePart.chargeAmount);
             periodAmount = this.float.add(periodAmount, reimbursePart.chargeAmount);
@@ -270,12 +270,12 @@ export default {
         let partQty = 0; // 报销发票数量
         let totalAmount = 0; // 订单总金额
         for (let idx = 0; idx < this.payingPeriod.length; idx++) {
-          let period = this.payingPeriod[idx];
+          const period = this.payingPeriod[idx];
           let periodAmount = 0;
-          let reimbursePartQty = period.reimbursePartArray.length;
+          const reimbursePartQty = period.reimbursePartArray.length;
           partQty += reimbursePartQty;
           for (let i = 0; i < reimbursePartQty; i++) {
-            let reimbursePart = period.reimbursePartArray[i];
+            const reimbursePart = period.reimbursePartArray[i];
             if (period.isPartOwe === 1) {
               reimbursePart.chargeAmount = period.totalAccount;
             } else {
@@ -292,7 +292,7 @@ export default {
       }
     },
     dopay: function () {
-      let me = this;
+      const me = this;
       if (me.disabled) {
         return;
       }
@@ -373,13 +373,13 @@ export default {
     countdown: function () {
       let createTimeStr = this.payParams.createTime;
       createTimeStr = createTimeStr.replace(/-/g, '/');
-      let createTime = new Date(createTimeStr);
+      const createTime = new Date(createTimeStr);
       createTime.setDate(createTime.getDate() + 1);
       let second = Math.floor((createTime.getTime() - new Date().getTime()) / 1000);
       if (second > 0) {
-        let hour = Math.floor(second / 3600);
+        const hour = Math.floor(second / 3600);
         second %= 3600;
-        let minute = Math.floor(second / 60);
+        const minute = Math.floor(second / 60);
         this.time = (hour >= 10 ? hour : '0' + hour) + ':' + (minute >= 10 ? minute : '0' + minute);
         setTimeout(this.countdown, 30 * 1000);
       } else {

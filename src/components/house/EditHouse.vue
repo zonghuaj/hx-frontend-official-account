@@ -16,27 +16,27 @@
       </div>
       <div class="house-item" style="border-top: none;">
         <span class="house-item-left">房屋地址</span>
-        <span class="house-item-right">{{house.hotAddress}}</span>
+        <span class="house-item-right">{{ house.hotAddress }}</span>
       </div>
       <div class="house-item">
         <span class="house-item-left">小区楼号</span>
-        <span class="house-item-right">{{house.regionName + house.buildingName}}</span>
+        <span class="house-item-right">{{ house.regionName + house.buildingName }}</span>
       </div>
       <div class="house-item">
         <span class="house-item-left">供热公司</span>
-        <span class="house-item-right">{{house.companyName}}</span>
+        <span class="house-item-right">{{ house.companyName }}</span>
       </div>
       <div class="house-item">
         <span class="house-item-left">供热卡号</span>
-        <span class="house-item-right">{{house.cardCode}}</span>
+        <span class="house-item-right">{{ house.cardCode }}</span>
       </div>
       <div class="house-item">
         <span class="house-item-left">户主姓名</span>
-        <span class="house-item-right">{{house.maskCustomerName == '无' ? '' : house.maskCustomerName}}</span>
+        <span class="house-item-right">{{ house.maskCustomerName == '无' ? '' : house.maskCustomerName }}</span>
       </div>
       <div class="house-item">
         <span class="house-item-left">房屋面积</span>
-        <span class="house-item-right">{{house.areas[0].propertyArea}}m²</span>
+        <span class="house-item-right">{{ house.areas[0].propertyArea }}m²</span>
       </div>
     </div>
     <div class="house">
@@ -129,14 +129,14 @@ export default {
       });
     },
     doSave: function () {
-      let reg = /^.{1,5}$/;
+      const reg = /^.{1,5}$/;
       if (reg.test(this.house.relationLabel)) {
         this.$toast.loading({
           duration: 0,
           forbidClick: true,
           message: '保存中...'
         });
-        let params = {
+        const params = {
           relationLabel: this.house.relationLabel,
           contact: this.house.contact,
           telephone: this.house.telephone,

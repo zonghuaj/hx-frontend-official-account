@@ -3,18 +3,25 @@
     <div class="search">
       <div class="house-company">
         <span class="house-company-left">供热公司</span>
-        <span class="house-company-right">{{company.companyName}}</span>
+        <span class="house-company-right">{{ company.companyName }}</span>
       </div>
       <div class="house-address">
         <span class="house-address-left">楼宇地址</span>
-        <el-autocomplete class="house-address-right" placeholder="请输入房证地址中的街路名称和编号" v-model="address" value-key="streetAddress" :fetch-suggestions="querySearchAsync" :trigger-on-focus="false" @select="handleSelect">
+        <el-autocomplete
+          class="house-address-right"
+          placeholder="请输入房证地址中的街路名称和编号"
+          v-model="address"
+          value-key="streetAddress"
+          :fetch-suggestions="querySearchAsync"
+          :trigger-on-focus="false"
+          @select="handleSelect">
         </el-autocomplete>
       </div>
       <div class="house-dylcfh">
         <div class="house-unit">
           <span class="house-unit-left">单元</span>
           <div class="house-unit-right">
-            <span>{{unit}}</span>
+            <span>{{ unit }}</span>
             <img src="@/assets/icon/ty_icon_pull_down.png" @click="showUnit" />
           </div>
         </div>
@@ -22,7 +29,14 @@
           <span>请选择单元</span>
           <van-radio-group v-model="unit">
             <van-cell-group>
-              <van-cell :title-style="unit == item ? 'color: #ff6016;' : ''" :title="item" clickable center @click="selectUnit(item)" v-for="(item, index) in unitList" :key="index">
+              <van-cell
+                :title-style="unit == item ? 'color: #ff6016;' : ''"
+                :title="item"
+                clickable
+                center
+                @click="selectUnit(item)"
+                v-for="(item, index) in unitList"
+                :key="index">
                 <van-radio :name="item">
                   <img slot="icon" slot-scope="props" :src="props.checked ? icon.active : icon.normal" />
                 </van-radio>
@@ -33,7 +47,7 @@
         <div class="house-floor">
           <span class="house-floor-left">楼层</span>
           <div class="house-floor-right">
-            <span>{{floor}}</span>
+            <span>{{ floor }}</span>
             <img src="@/assets/icon/ty_icon_pull_down.png" @click="showFloor" />
           </div>
         </div>
@@ -41,7 +55,14 @@
           <span>请选择楼层</span>
           <van-radio-group v-model="floor">
             <van-cell-group>
-              <van-cell :title-style="floor == item ? 'color: #ff6016;' : ''" :title="item" clickable center @click="selectFloor(item)" v-for="(item, index) in floorList" :key="index">
+              <van-cell
+                :title-style="floor == item ? 'color: #ff6016;' : ''"
+                :title="item"
+                clickable
+                center
+                @click="selectFloor(item)"
+                v-for="(item, index) in floorList"
+                :key="index">
                 <van-radio :name="item">
                   <img slot="icon" slot-scope="props" :src="props.checked ? icon.active : icon.normal" />
                 </van-radio>
@@ -52,7 +73,7 @@
         <div class="house-number">
           <span class="house-number-left">房号</span>
           <div class="house-number-right">
-            <span>{{number}}</span>
+            <span>{{ number }}</span>
             <img src="@/assets/icon/ty_icon_pull_down.png" @click="showNumber" />
           </div>
         </div>
@@ -60,7 +81,14 @@
           <span>请选择房号</span>
           <van-radio-group v-model="number">
             <van-cell-group>
-              <van-cell :title-style="number == item ? 'color: #ff6016;' : ''" :title="item" clickable center @click="selectNumber(item)" v-for="(item, index) in numberList" :key="index">
+              <van-cell
+                :title-style="number == item ? 'color: #ff6016;' : ''"
+                :title="item"
+                clickable
+                center
+                @click="selectNumber(item)"
+                v-for="(item, index) in numberList"
+                :key="index">
                 <van-radio :name="item">
                   <img slot="icon" slot-scope="props" :src="props.checked ? icon.active : icon.normal" />
                 </van-radio>
@@ -72,7 +100,7 @@
     </div>
     <span class="search-tip">若无法确定单元楼层 可直接点击查询</span>
     <van-button class="btn-search" text="查询" @click="doSearch" />
-    <span class="total" v-if="total > 0">共&nbsp;<font color="red">{{total}}</font>&nbsp;个房屋</span>
+    <span class="total" v-if="total > 0">共&nbsp;<font color="red">{{ total }}</font>&nbsp;个房屋</span>
     <div class="house-list" v-if="houseList.length > 0">
       <van-collapse v-model="activeName" accordion>
         <van-list v-model="loading" :finished="finished" finished-text="没有更多了" @load="onLoad">
@@ -81,21 +109,21 @@
             <div class="house-item">
               <div class="house-item-left">
                 <span class="house-item-left-left">小区楼号</span>
-                <span class="house-item-left-right">{{item.regionName + item.buildingName}}</span>
+                <span class="house-item-left-right">{{ item.regionName + item.buildingName }}</span>
               </div>
               <div class="house-item-right">
                 <span class="house-item-left-left">供热卡号</span>
-                <span class="house-item-left-right">{{item.cardCode}}</span>
+                <span class="house-item-left-right">{{ item.cardCode }}</span>
               </div>
             </div>
             <div class="house-item">
               <div class="house-item-left">
                 <span class="house-item-left-left">户主姓名</span>
-                <span class="house-item-left-right">{{item.maskCustomerName == '无' ? '' : item.maskCustomerName}}</span>
+                <span class="house-item-left-right">{{ item.maskCustomerName == '无' ? '' : item.maskCustomerName }}</span>
               </div>
               <div class="house-item-right">
                 <span class="house-item-left-left">房屋面积</span>
-                <span class="house-item-left-right">{{item.areas[0].propertyArea}}m²</span>
+                <span class="house-item-left-right">{{ item.areas[0].propertyArea }}m²</span>
               </div>
             </div>
             <div class="house-label">
@@ -178,7 +206,7 @@ export default {
   methods: {
     querySearchAsync: function (queryString, callback) {
       if (queryString) {
-        let params = {
+        const params = {
           companyId: this.company.companyId,
           address: queryString
         };
@@ -219,7 +247,7 @@ export default {
       this.floor = null;
       this.numberList = [];
       this.number = null;
-      let params = {
+      const params = {
         unit: this.unit
       };
       getBuildingFloor(this.building.buildingId, params).then(result => {
@@ -240,7 +268,7 @@ export default {
       this.floor = item;
       this.numberList = [];
       this.number = null;
-      let params = {
+      const params = {
         unit: this.unit,
         floor: this.floor
       };
@@ -276,7 +304,7 @@ export default {
       this.getHouseList();
     },
     getHouseList: function () {
-      let params = {
+      const params = {
         companyId: this.company.companyId,
         unit: this.unit,
         floor: this.floor,
@@ -287,9 +315,9 @@ export default {
       getBlueAddressHouse(this.building.buildingId, params).then(result => {
         if (result.data.status === 1) {
           this.total = result.data.data.total;
-          let records = result.data.data.records;
+          const records = result.data.data.records;
           for (let index = 0; index < records.length; index++) {
-            let maskCustomerName = records[index].maskCustomerName;
+            const maskCustomerName = records[index].maskCustomerName;
             if (maskCustomerName && maskCustomerName !== '无') {
               records[index].relationLabel = maskCustomerName.charAt(maskCustomerName.length - 1);
             } else {
@@ -308,14 +336,14 @@ export default {
       });
     },
     doSave: function (item) {
-      let reg = /^.{1,5}$/;
+      const reg = /^.{1,5}$/;
       if (reg.test(item.relationLabel)) {
         this.$toast.loading({
           duration: 0,
           forbidClick: true,
           message: '保存中...'
         });
-        let params = {
+        const params = {
           relationLabel: item.relationLabel,
           isDefault: this.isDefault ? 1 : 0
         };

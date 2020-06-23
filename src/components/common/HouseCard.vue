@@ -1,19 +1,19 @@
 <template>
   <div>
     <div class="house-head">
-        <span class="house-head-left">服务网点</span>
-        <span class="house-head-right">查看更多</span>
+      <span class="house-head-left">服务网点</span>
+      <span class="house-head-right">查看更多</span>
     </div>
     <div class="house">
       <div class="house-left">
         <div class="house-left-left"/>
         <div class="house-left-right">
-          <span class="house-left-right-up">{{record.hotAddress}}</span>
+          <span class="house-left-right-up">{{ record.hotAddress }}</span>
           <div class="house-left-right-down">
             <span class="house-default" v-if="record.isDefault">默认</span>
             <!--span class="house-label">{{record.relationLabel}}</span-->
-            <span class="house-name">{{record.companyAbbreviationName}}</span>
-            <span style="color: #fddcd1;">{{record.cardCode}}</span>
+            <span class="house-name">{{ record.companyAbbreviationName }}</span>
+            <span style="color: #fddcd1;">{{ record.cardCode }}</span>
           </div>
         </div>
       </div>
@@ -71,7 +71,7 @@ export default {
       } else if (this.source === 'addStopHeating') {
         orderApi.verifyStopHeating(item.houseId).then(result => {
           if (result.status === 1) {
-            let other = result.data;
+            const other = result.data;
             this.showPopup = false;
             this.record = item;
             this.$emit('switch', item, other);

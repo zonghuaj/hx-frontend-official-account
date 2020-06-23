@@ -11,21 +11,21 @@
           <span>支付剩余时间</span>
         </div>
         <div class="countdown">
-          <span class="countdown-bk">{{timmer.hour1}}</span>
-          <span class="countdown-bk">{{timmer.hour2}}</span>
+          <span class="countdown-bk">{{ timmer.hour1 }}</span>
+          <span class="countdown-bk">{{ timmer.hour2 }}</span>
           <span class="maohao">:</span>
-          <span class="countdown-bk">{{timmer.minute1}}</span>
-          <span class="countdown-bk">{{timmer.minute2}}</span>
+          <span class="countdown-bk">{{ timmer.minute1 }}</span>
+          <span class="countdown-bk">{{ timmer.minute2 }}</span>
         </div>
       </div>
       <div class="serial-number wxzf-list">
-        <span class="span1">订单编号</span><span class="span2">{{record.orderNo}}</span>
+        <span class="span1">订单编号</span><span class="span2">{{ record.orderNo }}</span>
       </div>
       <div class="money wxzf-list">
         <span class="span1">订单金额</span>
         <span class="span3">
           <span>¥</span>
-          <span>{{record.amount}}</span>
+          <span>{{ record.amount }}</span>
         </span>
       </div>
     </div>
@@ -110,13 +110,13 @@ export default {
     countdown: function () {
       let createTimeStr = this.record.createTime;
       createTimeStr = createTimeStr.replace(/-/g, '/');
-      let createTime = new Date(createTimeStr);
+      const createTime = new Date(createTimeStr);
       createTime.setDate(createTime.getDate() + 1);
       let second = Math.floor((createTime.getTime() - new Date().getTime()) / 1000);
       if (second > 0) {
-        let hour = Math.floor(second / 3600);
+        const hour = Math.floor(second / 3600);
         second %= 3600;
-        let minute = Math.floor(second / 60);
+        const minute = Math.floor(second / 60);
         this.timmer.hour1 = Math.floor(hour / 10);
         this.timmer.hour2 = hour % 10;
         this.timmer.minute1 = Math.floor(minute / 10);
@@ -131,7 +131,7 @@ export default {
     },
     // 微信支付
     doWeChatPay: function () {
-      let me = this;
+      const me = this;
       me.$toast.loading({
         duration: 0,
         forbidClick: true,
@@ -141,8 +141,8 @@ export default {
         me.$toast.clear();
       }, 60000);
       JSSDKLoader().then(wx => {
-        let url = location.href.split('#')[0];
-        let params = {
+        const url = location.href.split('#')[0];
+        const params = {
           url: url,
           payChannel: 1
         };
@@ -201,7 +201,7 @@ export default {
     },
     // 龙e付
     doCCBPay: function () {
-      let me = this;
+      const me = this;
       me.$toast.loading({
         duration: 0,
         forbidClick: true,
@@ -211,8 +211,8 @@ export default {
         me.$toast.clear();
       }, 60000);
       JSSDKLoader().then(wx => {
-        let url = location.href.split('#')[0];
-        let params = {
+        const url = location.href.split('#')[0];
+        const params = {
           url: url,
           payChannel: 2
         };

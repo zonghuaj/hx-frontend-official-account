@@ -8,17 +8,17 @@
     <div class="house-list" v-if="houseList.length > 0">
       <div class="house-item" v-for="(item, index) in houseList" :key="index">
         <div class="house-item-left" @click="doSelect(item)">
-          <span class="house-item-left-left-one" v-if="item.one">{{item.one}}</span>
-          <span class="house-item-left-left-two" v-if="item.two">{{item.two}}</span>
+          <span class="house-item-left-left-one" v-if="item.one">{{ item.one }}</span>
+          <span class="house-item-left-left-two" v-if="item.two">{{ item.two }}</span>
           <div class="house-item-left-right">
-            <span class="house-item-left-right-top">{{item.hotAddress}}</span>
+            <span class="house-item-left-right-top">{{ item.hotAddress }}</span>
             <div class="house-item-left-right-middle">
               <span class="house-default" v-if="item.isDefault">默认</span>
-              <span class="house-label">{{item.relationLabel}}</span>
-              <span class="house-name">{{item.companyAbbreviationName}}</span>
-              <span>{{item.cardCode}}</span>
+              <span class="house-label">{{ item.relationLabel }}</span>
+              <span class="house-name">{{ item.companyAbbreviationName }}</span>
+              <span>{{ item.cardCode }}</span>
             </div>
-            <span class="house-item-left-right-bottom">{{item.regionName + item.buildingName}}</span>
+            <span class="house-item-left-right-bottom">{{ item.regionName + item.buildingName }}</span>
           </div>
         </div>
         <div class="house-item-right" @click="doEdit(item)">
@@ -88,7 +88,7 @@ export default {
         this.houseList = res.data.data;
         for (let index = 0; index < this.houseList.length; index++) {
           if (this.houseList[index].relationLabel) {
-            let relationLabel = this.houseList[index].relationLabel.substring(0, 2);
+            const relationLabel = this.houseList[index].relationLabel.substring(0, 2);
             if (relationLabel.length === 1) {
               this.houseList[index].one = relationLabel;
             } else if (relationLabel.length === 2) {
@@ -196,7 +196,7 @@ export default {
       } else if (this.label === 'addStopHeating') {
         orderApi.verifyStopHeating(this.house.houseId).then(result => {
           if (result.status === 1) {
-            let other = result.data;
+            const other = result.data;
             this.$router.push({
               name: 'addStopHeating',
               params: {

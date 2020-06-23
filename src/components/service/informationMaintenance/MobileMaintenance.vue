@@ -19,8 +19,8 @@
         <div class="sjh-con">
           <div class="sjh-left"><span class="huisezi">手机验证码</span></div>
           <div class="sjh-right">
-             <input class="heisezi sryzm" type="text" placeholder="请输入验证码"/>
-             <input class="chengsezi" type="button" value="发送验证码" />
+            <input class="heisezi sryzm" type="text" placeholder="请输入验证码"/>
+            <input class="chengsezi" type="button" value="发送验证码" />
           </div>
         </div>
       </div>
@@ -35,8 +35,8 @@
         <div class="sjh-con">
           <div class="sjh-left"><span class="huisezi">手机验证码</span></div>
           <div class="sjh-right">
-             <input class="heisezi sryzm" type="text" placeholder="请输入验证码"/>
-             <input class="chengsezi" type="button" value="发送验证码" />
+            <input class="heisezi sryzm" type="text" placeholder="请输入验证码"/>
+            <input class="chengsezi" type="button" value="发送验证码" />
           </div>
         </div>
       </div>

@@ -1,10 +1,15 @@
-/** axios封装
- * 请求拦截、相应拦截、错误统一处理
+/*
+ * @Description:请求拦截、相应拦截、错误统一处理
+ * @author Tony
+ * @date 2020-06-20 14:32:37
+ * @last modified by Tony
+ * @last modified time 2020-06-20 14:32:37
  */
+
 import axios from 'axios';
-import router from '../router';
-// import QS from 'qs'
+// import router from '../router';
 import { Toast } from 'vant';
+import { refreshToken } from './refreshToken';
 
 // 请求超时时间
 axios.defaults.timeout = 90000;
@@ -30,9 +35,6 @@ axios.interceptors.request.use(
 axios.interceptors.response.use(
   response => {
     if (response.status === 200) {
-      router.replace({
-        path: '/login'
-      });
       return Promise.resolve(response);
     } else {
       return Promise.reject(response);
@@ -46,33 +48,17 @@ axios.interceptors.response.use(
         // 未登录则跳转登录页面，并携带当前页面的路径
         // 在登录成功后返回当前页面，这一步需要在登录页操作。
         case 401:
-          // eslint-disable-next-line no-undef
-          router.replace({
-            path: '/login',
-            // eslint-disable-next-line no-undef
-            query: { redirect: router.currentRoute.fullPath }
-          });
+          // 处理
           break;
         // 403 token过期
         // 登录过期对用户进行提示
         // 清除本地token和清空vuex中token对象
         // 跳转登录页面
         case 403:
-          Toast('登录过期，请重新登录');
+          // Toast('登录过期，请重新登录');
           // 清除token
           localStorage.removeItem('token');
-          // store.commit('loginSuccess', null)
-          // 跳转登录页面，并将要浏览的页面fullPath传过去，登录成功后跳转需要访问的页面
-          setTimeout(() => {
-            // eslint-disable-next-line no-undef
-            router.replace({
-              path: '/login',
-              query: {
-                // eslint-disable-next-line no-undef
-                redirect: router.currentRoute.fullPath
-              }
-            });
-          }, 1000);
+          refreshToken.refreshToken({ cpde: sessionStorage.getItem('code') });
           break;
         // 404请求不存在
         case 404:
@@ -115,7 +101,7 @@ export function post (url, params) {
   return new Promise((resolve, reject) => {
     axios.post(url, params)
       .then(res => {
-        let result = res;
+        const result = res;
         result.success = true;
         resolve(result);
       })

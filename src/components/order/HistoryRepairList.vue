@@ -9,23 +9,23 @@
       <div class="order-row" style="border-top: none;">
         <div class="order-ywlb">
           <span class="order-ywlb-left">业务类别</span>
-          <span class="order-ywlb-right">{{item.busType}}</span>
+          <span class="order-ywlb-right">{{ item.busType }}</span>
         </div>
         <div class="order-djbh">
           <span class="order-djbh-left">单据编号</span>
-          <span class="order-djbh-right">{{item.documentNo}}</span>
+          <span class="order-djbh-right">{{ item.documentNo }}</span>
         </div>
       </div>
       <div class="order-row">
         <div class="order-bxlb">
           <span class="order-bxlb-left">报修类别</span>
-          <span class="order-bxlb-right">{{item.type}}</span>
+          <span class="order-bxlb-right">{{ item.type }}</span>
         </div>
       </div>
       <div class="order-row">
         <div class="order-bxsj">
           <span class="order-bxsj-left">报修时间</span>
-          <span class="order-bxsj-right">{{item.createTime}}</span>
+          <span class="order-bxsj-right">{{ item.createTime }}</span>
         </div>
         <div class="btn-view" @click="viewDetails(item)">
           <span>查看详情</span>

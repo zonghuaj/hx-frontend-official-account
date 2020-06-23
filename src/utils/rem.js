@@ -9,8 +9,8 @@ window.onload = function () {
 };
 
 function setRem () {
-  let clientWidth = document.documentElement.clientWidth;
-  let scale = clientWidth / 750;
+  const clientWidth = document.documentElement.clientWidth;
+  const scale = clientWidth / 750;
   document.documentElement.style.fontSize = (baseSize * Math.min(scale, 5)) + 'px';
 }
 

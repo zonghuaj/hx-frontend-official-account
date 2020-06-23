@@ -45,8 +45,8 @@ export default {
     goBack: function () {
       history.pushState(null, null, document.URL);
       JSSDKLoader().then(wx => {
-        let url = location.href.split('#')[0];
-        let params = {
+        const url = location.href.split('#')[0];
+        const params = {
           url: url
         };
         wxApi.getSignature(params).then(result => {

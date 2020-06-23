@@ -1,7 +1,7 @@
 <template>
   <div class="nav">
     <img src="@/assets/icon/ty_icon_back.png" @click="goBack" />
-    <span>{{title}}</span>
+    <span>{{ title }}</span>
   </div>
 </template>
 
@@ -46,7 +46,7 @@ export default {
     goBack: function () {
       history.pushState(null, null, document.URL);
       this.$toast.clear();
-      let routeName = this.$route.name;
+      const routeName = this.$route.name;
       if (routeName === 'card' || routeName === 'address' || routeName === 'blueAddress' || routeName === 'floorNumber' || routeName === 'phoneNumber') {
         this.$router.push({
           name: 'company',
@@ -72,11 +72,11 @@ export default {
           });
         } else if (this.label === 'switchHouse') {
           houseBind().then((res) => {
-            let houseList = res.data.data;
+            const houseList = res.data.data;
             if (houseList.length === 0) {
               JSSDKLoader().then(wx => {
-                let url = location.href.split('#')[0];
-                let params = {
+                const url = location.href.split('#')[0];
+                const params = {
                   url: url
                 };
                 wxApi.getSignature(params).then(result => {
@@ -123,8 +123,8 @@ export default {
           });
         } else if (this.label === 'editInvoice' || this.label === 'addRepair' || this.label === 'addComplain' || this.label === 'addStopHeating' || this.label === 'serviceHall') {
           JSSDKLoader().then(wx => {
-            let url = location.href.split('#')[0];
-            let params = {
+            const url = location.href.split('#')[0];
+            const params = {
               url: url
             };
             wxApi.getSignature(params).then(result => {

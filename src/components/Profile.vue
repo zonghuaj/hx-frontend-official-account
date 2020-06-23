@@ -4,14 +4,14 @@
       <div class="user-first">
         <van-image class="user-first-left" :src="user.headImgUrl" round />
         <div class="user-first-right">
-          <span class="user-first-right-up">{{user.nickName}}</span>
+          <span class="user-first-right-up">{{ user.nickName }}</span>
           <span class="user-first-right-down">未绑定手机</span>
         </div>
       </div>
       <div class="user-second">
-        <span>{{user.userCode}}</span>
-        <span>{{user.subscribedDate}}</span>
-        <span>{{user.bindHouseCount}}</span>
+        <span>{{ user.userCode }}</span>
+        <span>{{ user.subscribedDate }}</span>
+        <span>{{ user.bindHouseCount }}</span>
       </div>
       <div class="user-third">
         <span>用户编号</span>
@@ -95,8 +95,8 @@ export default {
     goBack: function () {
       history.pushState(null, null, document.URL);
       JSSDKLoader().then(wx => {
-        let url = location.href.split('#')[0];
-        let params = {
+        const url = location.href.split('#')[0];
+        const params = {
           url: url
         };
         wxApi.getSignature(params).then(result => {
@@ -124,7 +124,7 @@ export default {
     initPage: function () {
       profileApi.getUser().then(result => {
         if (result.status === 1) {
-          let user = result.data;
+          const user = result.data;
           // 头像
           if (!user.headImgUrl) {
             user.headImgUrl = require('@/assets/icon/touxiang.png');

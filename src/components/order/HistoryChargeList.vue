@@ -9,27 +9,27 @@
       <div class="order-row" style="border-top: none;">
         <div class="order-code">
           <span class="order-code-left">订单编号</span>
-          <span class="order-code-right">{{item.poDispNo}}</span>
+          <span class="order-code-right">{{ item.poDispNo }}</span>
         </div>
         <div class="order-year">
           <span class="order-year-left">交费年度</span>
-          <span class="order-year-right">{{item.chargeMonth}}</span>
+          <span class="order-year-right">{{ item.chargeMonth }}</span>
         </div>
       </div>
       <div class="order-row">
         <div class="order-time">
           <span class="order-time-left">交费时间</span>
-          <span class="order-time-right">{{item.payTime.substring(0, 10)}}</span>
+          <span class="order-time-right">{{ item.payTime.substring(0, 10) }}</span>
         </div>
         <div class="order-amount">
           <span class="order-amount-left">交费金额</span>
-          <span class="order-amount-right">{{item.amount}}元</span>
+          <span class="order-amount-right">{{ item.amount }}元</span>
         </div>
       </div>
       <div class="order-row">
         <div class="order-status">
           <span class="order-status-left">发票状态</span>
-          <span class="order-status-right">{{item.status}}</span>
+          <span class="order-status-right">{{ item.status }}</span>
         </div>
         <div class="btn-view" @click="viewDetails(item)">
           <span>查看详情</span>
@@ -109,9 +109,9 @@ export default {
     getChargeList: function () {
       orderApi.getChargeList(this.curHouse.houseId).then((result) => {
         if (result.status === 1) {
-          let list = result.data;
+          const list = result.data;
           for (let i = 0; i < list.length; i++) {
-            let item = list[i];
+            const item = list[i];
             for (let j = 0; j < this.statusList.length; j++) {
               if (item.poStatusId === this.statusList[j].id) {
                 item.status = this.statusList[j].name;

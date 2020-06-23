@@ -4,7 +4,7 @@
       <div class="nav-icon">
         <img src="@/assets/icon/ty_icon_back.png" @click="goBack" />
       </div>
-      <span class="nav-title">{{record.invoiceTitleLibId ? '编辑发票抬头' : '添加发票抬头'}}</span>
+      <span class="nav-title">{{ record.invoiceTitleLibId ? '编辑发票抬头' : '添加发票抬头' }}</span>
       <div class="nav-btn">
         <span @click="doSave">保存</span>
       </div>
@@ -19,11 +19,18 @@
       <div class="body">
         <div class="item" style="border-top: none;">
           <span class="item-left">抬头类型</span>
-          <span class="item-right">{{getInvoiceTitleType()}}</span>
+          <span class="item-right">{{ getInvoiceTitleType() }}</span>
         </div>
         <div class="item">
           <span class="item-left"><font color="red">*</font>&nbsp;发票抬头</span>
-          <el-autocomplete class="item-right" placeholder="请输入发票抬头" v-model="record.pTitle" value-key="pTitle" :fetch-suggestions="querySearchAsync" :trigger-on-focus="false" @select="handleSelect">
+          <el-autocomplete
+            class="item-right"
+            placeholder="请输入发票抬头"
+            v-model="record.pTitle"
+            value-key="pTitle"
+            :fetch-suggestions="querySearchAsync"
+            :trigger-on-focus="false"
+            @select="handleSelect">
           </el-autocomplete>
         </div>
         <div class="item" v-if="enterpriseFlag">
@@ -97,7 +104,7 @@ export default {
         return;
       }
       if (this.enterpriseFlag) {
-        let reg = /^[0-9a-zA-Z]+$/;
+        const reg = /^[0-9a-zA-Z]+$/;
         if (!this.record.pTaxNo) {
           this.$toast('请输入发票税号！');
           return;
@@ -145,7 +152,7 @@ export default {
     },
     querySearchAsync: function (queryString, callback) {
       if (queryString) {
-        let params = {
+        const params = {
           invoiceType: this.enterpriseFlag ? constant.invoice_title_type.business : constant.invoice_title_type.nonbusiness,
           titleName: queryString
         };

@@ -122,7 +122,7 @@ export default {
     this.bindHouse = params.bindHouse;
     this.other = params.other;
     if (params.hasOwnProperty('record')) {
-      let record = params.record;
+      const record = params.record;
       this.ownerName = record.ownerName;
       this.identifyNo = record.identifyNo;
       this.contact = record.contact;
@@ -190,7 +190,7 @@ export default {
         this.$toast('请输入房主身份证号');
         return;
       } else {
-        let regex = /^[1-9]\d{5}(18|19|20)\d{2}((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/;
+        const regex = /^[1-9]\d{5}(18|19|20)\d{2}((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/;
         if (!regex.test(this.identifyNo)) {
           this.$toast('请输入有效的房主身份证号');
           return;
@@ -204,7 +204,7 @@ export default {
         this.$toast('请输入联系电话');
         return;
       } else {
-        let regex = /^((0\d{2,3}-\d{7,8})|(1[34578]\d{9}))$/;
+        const regex = /^((0\d{2,3}-\d{7,8})|(1[34578]\d{9}))$/;
         if (!regex.test(this.telephone)) {
           this.$toast('请输入有效的联系电话');
           return;
@@ -218,7 +218,7 @@ export default {
         this.$toast('请上传房产证照片');
         return;
       }
-      let record = {
+      const record = {
         ownerName: this.ownerName,
         identifyNo: this.identifyNo,
         contact: this.contact,

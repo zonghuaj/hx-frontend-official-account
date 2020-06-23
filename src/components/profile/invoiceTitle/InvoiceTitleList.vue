@@ -12,8 +12,8 @@
       <div class="enterprise-left">
         <img class="enterprise-left-left" src="@/assets/icon/personal_icon_gwb.png" />
         <div class="enterprise-left-right">
-          <span class="enterprise-left-right-up">{{invoiceTitle.pTitle}}</span>
-          <span class="enterprise-left-right-down">{{invoiceTitle.pTaxNo}}</span>
+          <span class="enterprise-left-right-up">{{ invoiceTitle.pTitle }}</span>
+          <span class="enterprise-left-right-down">{{ invoiceTitle.pTaxNo }}</span>
         </div>
       </div>
       <div class="enterprise-right" @click="doEdit(invoiceTitle)">
@@ -23,7 +23,7 @@
     <div class="nonenterprise" v-for="(invoiceTitle, index) in nonenterpriseList" :key="index" v-if="!enterpriseFlag">
       <div class="nonenterprise-left">
         <img class="nonenterprise-left-left" src="@/assets/icon/personal_icon_gwb.png" />
-        <span class="nonenterprise-left-right">{{invoiceTitle.pTitle}}</span>
+        <span class="nonenterprise-left-right">{{ invoiceTitle.pTitle }}</span>
       </div>
       <div class="nonenterprise-right" @click="doEdit(invoiceTitle)">
         <span style="border: 1px solid #ff6016;">编辑</span>

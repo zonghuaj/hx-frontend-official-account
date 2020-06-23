@@ -6,14 +6,21 @@
     </div>
     <house-card :curHouse="curHouse" :bindHouse="bindHouse" @switch="switchHouse"></house-card>
     <div class="year">
-      <span>{{chargeMonth}}</span>
+      <span>{{ chargeMonth }}</span>
       <img src="@/assets/icon/maintain_icon_xl.png" @click="showChargeMonth" />
     </div>
     <van-popup v-model="showChargeMonthPopup">
       <span>请选择交费年度</span>
       <van-radio-group v-model="chargeMonth">
         <van-cell-group>
-          <van-cell :title-style="chargeMonth == item ? 'color: #ff6016;' : ''" :title="item" clickable center @click="selectChargeMonth(item)" v-for="(item, index) in chargeMonthList" :key="index">
+          <van-cell
+            :title-style="chargeMonth == item ? 'color: #ff6016;' : ''"
+            :title="item"
+            clickable
+            center
+            @click="selectChargeMonth(item)"
+            v-for="(item, index) in chargeMonthList"
+            :key="index">
             <van-radio :name="item">
               <img slot="icon" slot-scope="props" :src="props.checked ? icon.active : icon.normal" />
             </van-radio>
@@ -26,55 +33,55 @@
       <div class="invoice-body">
         <div class="invoice-item">
           <span class="invoice-item-left">交费年度</span>
-          <span class="invoice-item-right">{{item.chargeMonth}}</span>
+          <span class="invoice-item-right">{{ item.chargeMonth }}</span>
         </div>
         <div class="invoice-item">
           <span class="invoice-item-left">发票代码</span>
-          <span class="invoice-item-right">{{item.invoiceCode}}</span>
+          <span class="invoice-item-right">{{ item.invoiceCode }}</span>
         </div>
         <div class="invoice-item">
           <span class="invoice-item-left">发票编号</span>
-          <span class="invoice-item-right">{{item.invoiceNumber}}</span>
+          <span class="invoice-item-right">{{ item.invoiceNumber }}</span>
         </div>
         <div class="invoice-item">
           <span class="invoice-item-left">交费方式</span>
-          <span class="invoice-item-right">{{getInvoiceType(item.invoiceTypeId)}}</span>
+          <span class="invoice-item-right">{{ getInvoiceType(item.invoiceTypeId) }}</span>
         </div>
         <div class="invoice-item">
           <span class="invoice-item-left">交费单价</span>
-          <span class="invoice-item-right">{{item.invoiceUnitPrice}}元/㎡</span>
+          <span class="invoice-item-right">{{ item.invoiceUnitPrice }}元/㎡</span>
         </div>
         <div class="invoice-item">
           <span class="invoice-item-left">交费面积</span>
-          <span class="invoice-item-right">{{item.invoiceArea}}㎡</span>
+          <span class="invoice-item-right">{{ item.invoiceArea }}㎡</span>
         </div>
         <div class="invoice-item">
           <span class="invoice-item-left">交费金额</span>
-          <span class="invoice-item-right">{{item.invoiceAmount}}元</span>
+          <span class="invoice-item-right">{{ item.invoiceAmount }}元</span>
         </div>
         <div class="invoice-item">
           <span class="invoice-item-left">发票抬头</span>
-          <span class="invoice-item-right">{{item.pTitle}}</span>
+          <span class="invoice-item-right">{{ item.pTitle }}</span>
         </div>
         <div class="invoice-item" v-if="item.invoiceTitleTypeId == 2">
           <span class="invoice-item-left">税号</span>
-          <span class="invoice-item-right">{{item.pTaxNo}}</span>
+          <span class="invoice-item-right">{{ item.pTaxNo }}</span>
         </div>
         <div class="invoice-item" v-if="item.invoiceTitleTypeId == 2 && item.expanded">
           <span class="invoice-item-left">开户行</span>
-          <span class="invoice-item-right">{{item.pBankName}}</span>
+          <span class="invoice-item-right">{{ item.pBankName }}</span>
         </div>
         <div class="invoice-item" v-if="item.invoiceTitleTypeId == 2 && item.expanded">
           <span class="invoice-item-left">账号</span>
-          <span class="invoice-item-right">{{item.pAccountNo}}</span>
+          <span class="invoice-item-right">{{ item.pAccountNo }}</span>
         </div>
         <div class="invoice-item" v-if="item.invoiceTitleTypeId == 2 && item.expanded">
           <span class="invoice-item-left">地址</span>
-          <span class="invoice-item-right">{{item.pAddress}}</span>
+          <span class="invoice-item-right">{{ item.pAddress }}</span>
         </div>
         <div class="invoice-item" v-if="item.invoiceTitleTypeId == 2 && item.expanded">
           <span class="invoice-item-left">电话</span>
-          <span class="invoice-item-right">{{item.pTelephone}}</span>
+          <span class="invoice-item-right">{{ item.pTelephone }}</span>
         </div>
         <div class="invoice-toggle" v-if="item.invoiceTitleTypeId == 2">
           <img src="@/assets/icon/ty_icon_retract.png" @click="toggleInvoice(item)" v-if="item.expanded">
@@ -199,7 +206,7 @@ export default {
       if (!this.chargeMonth) {
         return;
       }
-      let params = {
+      const params = {
         houseId: this.curHouse.houseId,
         chargeMonth: this.chargeMonth
       };

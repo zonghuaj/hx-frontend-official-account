@@ -29,11 +29,11 @@
       <div class="orderInfo">
         <div class="orderInfo-left">
           <img src="@/assets/icon/ty_icon_clock.png">
-          <span class="year">{{period.chargeYear}}年度</span>
+          <span class="year">{{ period.chargeYear }}年度</span>
         </div>
         <div class="orderInfo-right">
           <span class="sqtLabel">交费面积</span>
-          <span class="sqtValue">{{period.chargeArea}}m²</span>
+          <span class="sqtValue">{{ period.chargeArea }}m²</span>
           <input class="wnqfjf" type="button" value="往年欠费交费" v-if="previousPeriod.length > 0" @click="showOwe()" />
         </div>
       </div>
@@ -63,11 +63,11 @@
         <div class="invoiceTitle">
           <div class="invoiceTitle-left">
             <p></p>
-            <span class="name">发票信息{{period.visibility.selfPayCard ? (index + 2) : (index + 1)}}</span>
+            <span class="name">发票信息{{ period.visibility.selfPayCard ? (index + 2) : (index + 1) }}</span>
           </div>
           <div class="invoiceTitle-right">
             <span class="sqtLabel" v-if="previousPeriod.length == 0">交费方式</span>
-            <span class="sqtValue" v-if="previousPeriod.length == 0">{{isHouse == 0 ? '非住宅' : '报销'}}</span>
+            <span class="sqtValue" v-if="previousPeriod.length == 0">{{ isHouse == 0 ? '非住宅' : '报销' }}</span>
             <img src="@/assets/icon/pay_icon_close.png" v-if="reimbursePart.deletable" @click="deleteInvoice(period, reimbursePart)">
           </div>
         </div>
@@ -90,7 +90,7 @@
           <div class="label"><span>*</span>发票抬头</div>
           <div class="input">
             <div class="titlePicker">
-              <span v-if="reimbursePart.titleCategory == 'business'">{{reimbursePart.title}}</span>
+              <span v-if="reimbursePart.titleCategory == 'business'">{{ reimbursePart.title }}</span>
               <input type="text" placeholder="请输入发票抬头" v-model="reimbursePart.title" v-else />
               <img src="@/assets/icon/ty_icon_more_orange.png" @click="showInvoiceTitle(reimbursePart)">
             </div>
@@ -98,23 +98,23 @@
         </div>
         <div class="line" v-if="reimbursePart.titleCategory == 'business'">
           <div class="label"><span>*</span>税号</div>
-          <div class="input">{{reimbursePart.taxNo}}</div>
+          <div class="input">{{ reimbursePart.taxNo }}</div>
         </div>
         <div class="line" v-if="reimbursePart.titleCategory == 'business' && reimbursePart.showMoreFields">
           <div class="label">开户行</div>
-          <div class="input">{{reimbursePart.bank}}</div>
+          <div class="input">{{ reimbursePart.bank }}</div>
         </div>
         <div class="line" v-if="reimbursePart.titleCategory == 'business' && reimbursePart.showMoreFields">
           <div class="label">账号</div>
-          <div class="input">{{reimbursePart.bankAccount}}</div>
+          <div class="input">{{ reimbursePart.bankAccount }}</div>
         </div>
         <div class="line" v-if="reimbursePart.titleCategory == 'business' && reimbursePart.showMoreFields">
           <div class="label">地址</div>
-          <div class="input">{{reimbursePart.address}}</div>
+          <div class="input">{{ reimbursePart.address }}</div>
         </div>
         <div class="line" v-if="reimbursePart.titleCategory == 'business' && reimbursePart.showMoreFields">
           <div class="label">电话</div>
-          <div class="input">{{reimbursePart.mobile}}</div>
+          <div class="input">{{ reimbursePart.mobile }}</div>
         </div>
         <div class="btnShowMore" v-if="reimbursePart.titleCategory == 'business'">
           <img src="@/assets/icon/ty_icon_retract.png" @click="toggleInvoice(reimbursePart)" v-if="reimbursePart.showMoreFields">
@@ -297,7 +297,7 @@ export default {
           //   ceSubsidyPrice: 26,
           //   isHouse: 1
           // }
-          let period = result.curPeriod;
+          const period = result.curPeriod;
           this.isHouse = period.isHouse;
           if (this.isHouse === 0) {
             this.paymentMethod = 'reimburseAll';
@@ -338,16 +338,16 @@ export default {
     },
     // 参照往年
     doRefer: function () {
-      let visibility = {
+      const visibility = {
         selfPayCard: false,
         reimburseCard: false
       };
-      let selfPay = {
+      const selfPay = {
       };
-      let reimbursePartArray = [];
-      let invoices = this.previousYear.invoices;
+      const reimbursePartArray = [];
+      const invoices = this.previousYear.invoices;
       for (let index = 0; index < invoices.length; index++) {
-        let invoice = invoices[index];
+        const invoice = invoices[index];
         if (invoice.invoiceTypeId === constant.invoice_type.selfPay) {
           visibility.selfPayCard = true;
           selfPay.area = invoice.invoiceArea;
@@ -751,7 +751,7 @@ export default {
     },
     verify: function () {
       for (var idx = 0; idx < this.payingPeriod.length; idx++) {
-        let period = this.payingPeriod[idx];
+        const period = this.payingPeriod[idx];
         let paymentMethod = this.paymentMethod;
         if (paymentMethod === 'reference') {
           if (period.visibility.selfPayCard) {
@@ -765,7 +765,7 @@ export default {
           }
         }
         if (paymentMethod === 'selfPay') {
-          let reg = /^.{2,5}$/;
+          const reg = /^.{2,5}$/;
           if (!reg.test(period.selfPay.title)) {
             this.$toast('发票抬头最少2个字最多5个字');
             return false;
@@ -787,7 +787,7 @@ export default {
             this.$toast('请输入自费面积!');
             return false;
           } else {
-            let reg = /^\d+\.?\d{0,2}$/;
+            const reg = /^\d+\.?\d{0,2}$/;
             if (!reg.test(period.selfPay.area)) {
               this.$toast('自费面积最多2位小数');
               return false;
@@ -795,7 +795,7 @@ export default {
           }
           let totalArea = period.selfPay.area;
           for (let i = 0; i < period.reimbursePartArray.length; i++) {
-            let reimburse = period.reimbursePartArray[i];
+            const reimburse = period.reimbursePartArray[i];
             if (!reimburse.title) {
               this.$toast('请输入发票抬头!');
               return false;
@@ -808,14 +808,14 @@ export default {
               this.$toast('请输入报销面积!');
               return false;
             } else {
-              let reg = /^\d+\.?\d{0,2}$/;
+              const reg = /^\d+\.?\d{0,2}$/;
               if (!reg.test(reimburse.area)) {
                 this.$toast('报销面积最多2位小数');
                 return false;
               }
             }
             if (reimburse.reimbursementApplicant) {
-              let reg = /^.{2,5}$/;
+              const reg = /^.{2,5}$/;
               if (!reg.test(reimburse.reimbursementApplicant)) {
                 this.$toast('报销人最少2个字最多5个字');
                 return false;
@@ -830,7 +830,7 @@ export default {
         } else if (paymentMethod === 'reimburseAll') {
           let totalArea = 0;
           for (let i = 0; i < period.reimbursePartArray.length; i++) {
-            let reimburse = period.reimbursePartArray[i];
+            const reimburse = period.reimbursePartArray[i];
             if (!reimburse.title) {
               this.$toast('请输入发票抬头!');
               return false;
@@ -843,14 +843,14 @@ export default {
               this.$toast('请输入报销面积!');
               return false;
             } else {
-              let reg = /^\d+\.?\d{0,2}$/;
+              const reg = /^\d+\.?\d{0,2}$/;
               if (!reg.test(reimburse.area)) {
                 this.$toast('报销面积最多2位小数');
                 return false;
               }
             }
             if (reimburse.reimbursementApplicant) {
-              let reg = /^.{2,5}$/;
+              const reg = /^.{2,5}$/;
               if (!reg.test(reimburse.reimbursementApplicant)) {
                 this.$toast('报销人最少2个字最多5个字');
                 return false;

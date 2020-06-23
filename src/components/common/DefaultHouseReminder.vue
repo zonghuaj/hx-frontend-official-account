@@ -27,7 +27,7 @@ export default {
   },
   methods: {
     doConfirm: function () {
-      let params = {
+      const params = {
         primary: 1
       };
       baseApi.setDefaultHouse(this.house.houseId, this.house.bindId, params).then(result => {

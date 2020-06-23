@@ -118,11 +118,11 @@ export default {
       }
     },
     initWeChat: function () {
-      let me = this;
+      const me = this;
       JSSDKLoader().then(wx => {
         me.wx = wx;
-        let url = location.href.split('#')[0];
-        let params = {
+        const url = location.href.split('#')[0];
+        const params = {
           url: url
         };
         wxApi.getSignature(params).then(result => {
@@ -161,7 +161,7 @@ export default {
     },
     // 图片预览
     doPreview: function () {
-      let me = this;
+      const me = this;
       me.imagePreview = ImagePreview({
         images: [
           me.invoice.previewUrl
@@ -184,7 +184,7 @@ export default {
       this.showYX = true;
     },
     doSend: function () {
-      let regEmail = /^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
+      const regEmail = /^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
       if (!this.receiver) {
         this.$toast('请输入收件人！');
         return;
@@ -197,7 +197,7 @@ export default {
         forbidClick: true,
         message: '发送中...'
       });
-      let params = {
+      const params = {
         receiver: this.receiver
       };
       invoiceApi.sendInvoice(this.invoice.poInvoiceId, params).then(result => {

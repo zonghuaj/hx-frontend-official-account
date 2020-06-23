@@ -36,9 +36,9 @@ const getPayablePeriod = houseId => {
       .then(res => {
         var previousPeriod = [];
         var curPeriod = {};
-        let list = res.data;
+        const list = res.data;
         for (var i = 0; i < list.length; i++) {
-          let period = list[i];
+          const period = list[i];
           period.chargeYear = period.chargeMonth.substring(0, 4);
           if (period.isCurrentYear) {
             curPeriod = period;
@@ -66,12 +66,12 @@ const saveOrder = (houseId, val) => {
     systemChannel: constant.system_channel.wechat,
     details: []
   };
-  let payingPeriod = val.payingPeriod;
-  let paymentMethod = val.paymentMethod;
+  const payingPeriod = val.payingPeriod;
+  const paymentMethod = val.paymentMethod;
   if (paymentMethod === 'selfPay') {
     for (let idx = 0; idx < payingPeriod.length; idx++) {
-      let period = payingPeriod[idx];
-      let detail = {
+      const period = payingPeriod[idx];
+      const detail = {
         area: period.chargeArea,
         amount: period.amount,
         chargeMonth: period.chargeMonth,
@@ -96,8 +96,8 @@ const saveOrder = (houseId, val) => {
     }
   } else if (paymentMethod === 'reimbursePart') {
     for (let idx = 0; idx < payingPeriod.length; idx++) {
-      let period = payingPeriod[idx];
-      let detail = {
+      const period = payingPeriod[idx];
+      const detail = {
         area: period.chargeArea,
         amount: period.amount,
         chargeMonth: period.chargeMonth,
@@ -118,9 +118,9 @@ const saveOrder = (houseId, val) => {
           applicant: null
         }]
       };
-      let reimbursePartQty = period.reimbursePartArray.length;
+      const reimbursePartQty = period.reimbursePartArray.length;
       for (let i = 0; i < reimbursePartQty; i++) {
-        let reimbursePart = period.reimbursePartArray[i];
+        const reimbursePart = period.reimbursePartArray[i];
         detail.invoices.push({
           invoiceTypeId: constant.invoice_type.reimbursement,
           invoiceTitleTypeId: (reimbursePart.titleCategory === 'business' ? constant.invoice_title_type.business : constant.invoice_title_type.nonbusiness),
@@ -139,8 +139,8 @@ const saveOrder = (houseId, val) => {
     }
   } else if (paymentMethod === 'reimburseAll') {
     for (let idx = 0; idx < payingPeriod.length; idx++) {
-      let period = payingPeriod[idx];
-      let detail = {
+      const period = payingPeriod[idx];
+      const detail = {
         area: period.chargeArea,
         amount: period.amount,
         chargeMonth: period.chargeMonth,
@@ -149,9 +149,9 @@ const saveOrder = (houseId, val) => {
         isPartOwe: period.isPartOwe,
         invoices: []
       };
-      let reimbursePartQty = period.reimbursePartArray.length;
+      const reimbursePartQty = period.reimbursePartArray.length;
       for (let i = 0; i < reimbursePartQty; i++) {
-        let reimbursePart = period.reimbursePartArray[i];
+        const reimbursePart = period.reimbursePartArray[i];
         detail.invoices.push({
           invoiceTypeId: constant.invoice_type.reimbursement,
           invoiceTitleTypeId: (reimbursePart.titleCategory === 'business' ? constant.invoice_title_type.business : constant.invoice_title_type.nonbusiness),
@@ -187,13 +187,13 @@ const getOrderInfo = (orderId) => {
       .then(res => {
         var resData = res.data;
         var result = {};
-        let payingPeriod = [];
+        const payingPeriod = [];
 
         let invoQty = 0;
-        let details = resData.details;
+        const details = resData.details;
         for (let idx = 0; idx < details.length; idx++) {
-          let item = details[idx];
-          let period = {
+          const item = details[idx];
+          const period = {
             selfPay: {},
             reimbursePartArray: [],
             chargeArea: item.area,
@@ -204,10 +204,10 @@ const getOrderInfo = (orderId) => {
               reimburseCard: false
             }
           };
-          let invoices = item.invoices;
+          const invoices = item.invoices;
           invoQty += invoices.length;
           for (let index = 0; index < invoices.length; index++) {
-            let invoce = invoices[index];
+            const invoce = invoices[index];
             if (invoce.invoiceTypeId === constant.invoice_type.selfPay) {
               period.selfPay.title = invoce.pTitle;
               period.selfPay.chargeAmount = invoce.invoiceAmount;

@@ -5,12 +5,12 @@
       <div class="house-left">
         <img class="house-left-left" src="@/assets/icon/sy_house.png" />
         <div class="house-left-right">
-          <span class="house-left-right-up">{{curHouse.hotAddress}}</span>
+          <span class="house-left-right-up">{{ curHouse.hotAddress }}</span>
           <div class="house-left-right-down">
             <span class="house-default" v-if="curHouse.isDefault">默认</span>
-            <span class="house-label">{{curHouse.relationLabel}}</span>
-            <span class="house-name">{{curHouse.companyAbbreviationName}}</span>
-            <span>{{curHouse.cardCode}}</span>
+            <span class="house-label">{{ curHouse.relationLabel }}</span>
+            <span class="house-name">{{ curHouse.companyAbbreviationName }}</span>
+            <span>{{ curHouse.cardCode }}</span>
           </div>
         </div>
       </div>
@@ -141,8 +141,8 @@ export default {
     goBack: function () {
       history.pushState(null, null, document.URL);
       JSSDKLoader().then(wx => {
-        let url = location.href.split('#')[0];
-        let params = {
+        const url = location.href.split('#')[0];
+        const params = {
           url: url
         };
         wxApi.getSignature(params).then(result => {
@@ -218,7 +218,7 @@ export default {
     goStopHeating: function () {
       orderApi.verifyStopHeating(this.curHouse.houseId).then(result => {
         if (result.status === 1) {
-          let other = result.data;
+          const other = result.data;
           this.$router.push({
             name: 'addStopHeating',
             params: {

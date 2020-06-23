@@ -2,7 +2,7 @@
   <div class="content">
     <div class="nav">
       <img src="@/assets/icon/ty_icon_back.png" @click="goBack" />
-      <span>停供申请（{{record.documentNo}}）单详情</span>
+      <span>停供申请（{{ record.documentNo }}）单详情</span>
     </div>
     <house-card :curHouse="curHouse"></house-card>
     <div class="order">
@@ -12,23 +12,23 @@
       </div>
       <div class="order-owner">
         <span class="order-owner-left">户主姓名</span>
-        <span class="order-owner-right">{{record.ownerName}}</span>
+        <span class="order-owner-right">{{ record.ownerName }}</span>
       </div>
       <div class="order-identifyNo">
         <span class="order-identifyNo-left">户主身份证号</span>
-        <span class="order-identifyNo-right">{{record.identifyNo}}</span>
+        <span class="order-identifyNo-right">{{ record.identifyNo }}</span>
       </div>
       <div class="order-contact">
         <span class="order-contact-left">联系人</span>
-        <span class="order-contact-right">{{record.contact}}</span>
+        <span class="order-contact-right">{{ record.contact }}</span>
       </div>
       <div class="order-telephone">
         <span class="order-telephone-left">联系电话</span>
-        <span class="order-telephone-right">{{record.telephone}}</span>
+        <span class="order-telephone-right">{{ record.telephone }}</span>
       </div>
       <div class="order-remark">
         <span class="order-remark-up">备注</span>
-        <span class="order-remark-down">{{record.remark}}</span>
+        <span class="order-remark-down">{{ record.remark }}</span>
       </div>
       <div class="order-identity">
         <span class="order-identity-up">户主身份证照片</span>
@@ -53,7 +53,7 @@
       </div>
       <el-timeline>
         <el-timeline-item :timestamp="item.pointTime" v-for="(item, index) in record.progressList" :key="index">
-          {{item.event}}&nbsp;&nbsp;{{item.message}}
+          {{ item.event }}&nbsp;&nbsp;{{ item.message }}
         </el-timeline-item>
       </el-timeline>
     </div>

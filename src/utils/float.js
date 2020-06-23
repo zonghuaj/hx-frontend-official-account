@@ -12,16 +12,16 @@ function isInteger (obj) {
  *   {times:100, num: 314}
  */
 function toInteger (floatNum) {
-  let ret = {times: 1, num: 0};
+  const ret = { times: 1, num: 0 };
   if (isInteger(floatNum)) {
     ret.num = floatNum;
     return ret;
   }
-  let strfi = floatNum + '';
-  let dotPos = strfi.indexOf('.');
-  let len = strfi.substr(dotPos + 1).length;
-  let times = Math.pow(10, len);
-  let intNum = parseInt(floatNum * times + 0.5, 10);
+  const strfi = floatNum + '';
+  const dotPos = strfi.indexOf('.');
+  const len = strfi.substr(dotPos + 1).length;
+  const times = Math.pow(10, len);
+  const intNum = parseInt(floatNum * times + 0.5, 10);
   ret.times = times;
   ret.num = intNum;
   return ret;
@@ -37,13 +37,13 @@ function toInteger (floatNum) {
  *
  */
 function operation (a, b, op) {
-  let o1 = toInteger(a);
-  let o2 = toInteger(b);
-  let n1 = o1.num;
-  let n2 = o2.num;
-  let t1 = o1.times;
-  let t2 = o2.times;
-  let max = t1 > t2 ? t1 : t2;
+  const o1 = toInteger(a);
+  const o2 = toInteger(b);
+  const n1 = o1.num;
+  const n2 = o2.num;
+  const t1 = o1.times;
+  const t2 = o2.times;
+  const max = t1 > t2 ? t1 : t2;
   let result = null;
   switch (op) {
     case 'add':
@@ -75,7 +75,7 @@ function operation (a, b, op) {
 
 function add (value1, value2, precision) {
   precision = precision || 2;
-  let pow = Math.pow(10, precision);
+  const pow = Math.pow(10, precision);
   let value = operation(value1, value2, 'add');
   value = Math.round(operation(value, pow, 'multiply')) / pow;
   return value;
@@ -83,7 +83,7 @@ function add (value1, value2, precision) {
 
 function subtract (value1, value2, precision) {
   precision = precision || 2;
-  let pow = Math.pow(10, precision);
+  const pow = Math.pow(10, precision);
   let value = operation(value1, value2, 'subtract');
   value = Math.round(operation(value, pow, 'multiply')) / pow;
   return value;
@@ -91,7 +91,7 @@ function subtract (value1, value2, precision) {
 
 function multiply (value1, value2, precision) {
   precision = precision || 2;
-  let pow = Math.pow(10, precision);
+  const pow = Math.pow(10, precision);
   let value = operation(value1, value2, 'multiply');
   value = Math.round(operation(value, pow, 'multiply')) / pow;
   return value;
@@ -99,7 +99,7 @@ function multiply (value1, value2, precision) {
 
 function divide (value1, value2, precision) {
   precision = precision || 2;
-  let pow = Math.pow(10, precision);
+  const pow = Math.pow(10, precision);
   let value = operation(value1, value2, 'divide');
   value = Math.round(operation(value, pow, 'multiply')) / pow;
   return value;

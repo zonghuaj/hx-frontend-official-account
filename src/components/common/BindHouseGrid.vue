@@ -7,17 +7,17 @@
     <div class="house-list">
       <div class="house-item" @click="select(item)" v-for="(item, index) in bindHouse" :key="index">
         <div class="house-item-left">
-          <span class="house-item-left-left-one" v-if="item.one">{{item.one}}</span>
-          <span class="house-item-left-left-two" v-if="item.two">{{item.two}}</span>
+          <span class="house-item-left-left-one" v-if="item.one">{{ item.one }}</span>
+          <span class="house-item-left-left-two" v-if="item.two">{{ item.two }}</span>
           <div class="house-item-left-right">
-            <span class="house-item-left-right-top">{{item.hotAddress}}</span>
+            <span class="house-item-left-right-top">{{ item.hotAddress }}</span>
             <div class="house-item-left-right-middle">
               <span class="house-default" v-if="item.isDefault">默认</span>
-              <span class="house-label">{{item.relationLabel}}</span>
-              <span class="house-name">{{item.companyAbbreviationName}}</span>
-              <span>{{item.cardCode}}</span>
+              <span class="house-label">{{ item.relationLabel }}</span>
+              <span class="house-name">{{ item.companyAbbreviationName }}</span>
+              <span>{{ item.cardCode }}</span>
             </div>
-            <span class="house-item-left-right-bottom">{{item.regionName + item.buildingName}}</span>
+            <span class="house-item-left-right-bottom">{{ item.regionName + item.buildingName }}</span>
           </div>
         </div>
       </div>
@@ -49,7 +49,7 @@ export default {
   beforeMount: function () {
     for (let index = 0; index < this.bindHouse.length; index++) {
       if (this.bindHouse[index].relationLabel) {
-        let relationLabel = this.bindHouse[index].relationLabel.substring(0, 2);
+        const relationLabel = this.bindHouse[index].relationLabel.substring(0, 2);
         if (relationLabel.length === 1) {
           this.bindHouse[index].one = relationLabel;
         } else if (relationLabel.length === 2) {

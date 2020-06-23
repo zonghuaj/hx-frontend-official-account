@@ -5,7 +5,7 @@
     <span class="subTitle">请补全当前房屋户主姓名</span>
     <div class="name">
       <input type="text" placeholder="请补全姓名" v-model="ownerNamePrefix" />
-      <span>{{ownerNameSuffix}}</span>
+      <span>{{ ownerNameSuffix }}</span>
     </div>
     <div class="error" v-if="errorFlag">
       <img src="@/assets/icon/ty_icon_warning.png" />
@@ -31,7 +31,7 @@ export default {
     };
   },
   beforeMount: function () {
-    let ownerName = this.previousYear.ownerName;
+    const ownerName = this.previousYear.ownerName;
     this.ownerNameSuffix = ownerName.charAt(ownerName.length - 1);
   },
   mounted: function () {

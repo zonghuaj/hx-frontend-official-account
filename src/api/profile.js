@@ -7,7 +7,7 @@ const getUser = () => {
 const getNotice = () => {
   // 测试数据
   return new Promise((resolve, reject) => {
-    let result = {
+    const result = {
       status: 1,
       data: {
         // 公司公告

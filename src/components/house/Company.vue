@@ -4,14 +4,21 @@
     <div class="company">
       <span class="company-left">供热公司</span>
       <div class="company-right" @click="showCompany">
-        <span>{{company.companyName}}</span>
+        <span>{{ company.companyName }}</span>
         <img src="@/assets/icon/ty_icon_pull_down.png" />
       </div>
       <van-popup v-model="showCompanyPopup">
         <span>请选择供热公司</span>
         <van-radio-group v-model="company.companyId">
           <van-cell-group>
-            <van-cell :title-style="company.companyId == item.companyId ? 'color: #ff6016;' : ''" :title="item.companyName" clickable center @click="selectCompany(item)" v-for="(item, index) in companyList" :key="index">
+            <van-cell
+              :title-style="company.companyId == item.companyId ? 'color: #ff6016;' : ''"
+              :title="item.companyName"
+              clickable
+              center
+              @click="selectCompany(item)"
+              v-for="(item, index) in companyList"
+              :key="index">
               <van-radio :name="item.companyId">
                 <img slot="icon" slot-scope="props" :src="props.checked ? icon.active : icon.normal" />
               </van-radio>

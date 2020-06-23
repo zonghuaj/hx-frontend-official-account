@@ -7,7 +7,7 @@
     <div class="detail">
       <div class="detail-item">
         <span class="detail-item-left">服务范围</span>
-        <span class="detail-item-right">{{outlets.serviceArea}}</span>
+        <span class="detail-item-right">{{ outlets.serviceArea }}</span>
       </div>
     </div>
   </div>

@@ -36,11 +36,11 @@ export default {
         this.title = '房屋列表';
       }
       houseBind().then((result) => {
-        let houseList = result.data.data;
+        const houseList = result.data.data;
 
         if (this.label) {
           if (houseList.length === 1 || (houseList.length > 1 && houseList[0].isDefault === 1)) {
-            let house = houseList[0];
+            const house = houseList[0];
             if (this.label === 'serviceHall') {
               this.$router.replace({
                 name: 'serviceHall',
@@ -92,7 +92,7 @@ export default {
             } else if (this.label === 'addStopHeating') {
               orderApi.verifyStopHeating(house.houseId).then(result => {
                 if (result.status === 1) {
-                  let other = result.data;
+                  const other = result.data;
                   this.$router.replace({
                     name: 'addStopHeating',
                     params: {

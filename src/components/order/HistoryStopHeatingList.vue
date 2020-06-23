@@ -9,17 +9,17 @@
       <div class="order-row" style="border-top: none;">
         <div class="order-djbh">
           <span class="order-djbh-left">单据编号</span>
-          <span class="order-djbh-right">{{item.documentNo}}</span>
+          <span class="order-djbh-right">{{ item.documentNo }}</span>
         </div>
         <div class="order-zt">
           <span class="order-zt-left">状态</span>
-          <span class="order-zt-right">{{item.statusLabel}}</span>
+          <span class="order-zt-right">{{ item.statusLabel }}</span>
         </div>
       </div>
       <div class="order-row">
         <div class="order-sqsj">
           <span class="order-sqsj-left">申请时间</span>
-          <span class="order-sqsj-right">{{item.createTime}}</span>
+          <span class="order-sqsj-right">{{ item.createTime }}</span>
         </div>
         <div class="btn-view" @click="viewDetails(item)">
           <span>查看详情</span>

@@ -2,18 +2,18 @@
   <div class="content">
     <div class="nav">
       <img src="@/assets/icon/ty_icon_back.png" @click="goBack" />
-      <span>供热交费单（{{record.dispOrderNo}}）详情</span>
+      <span>供热交费单（{{ record.dispOrderNo }}）详情</span>
     </div>
     <house-card :curHouse="curHouse"></house-card>
     <div class="detail" v-for="(detail, index) in record.details" :key="index">
       <div class="detail-item">
         <div class="detail-year">
           <img src="@/assets/icon/ty_icon_clock.png" />
-          <span>{{detail.chargeMonth}}</span>
+          <span>{{ detail.chargeMonth }}</span>
         </div>
         <div class="detail-area">
           <span class="detail-area-left">交费面积</span>
-          <span class="detail-area-right">{{detail.area}}m²</span>
+          <span class="detail-area-right">{{ detail.area }}m²</span>
         </div>
       </div>
       <div class="invoice" v-for="(invoice, index) in detail.invoices" :key="index">
@@ -21,57 +21,57 @@
         <div class="invoice-body">
           <div class="invoice-item">
             <span class="invoice-item-left">交费年度</span>
-            <span class="invoice-item-right">{{detail.chargeMonth}}</span>
+            <span class="invoice-item-right">{{ detail.chargeMonth }}</span>
           </div>
           <div class="invoice-item">
             <span class="invoice-item-left">发票代码</span>
-            <span class="invoice-item-right" v-if="invoice.invoiceCode">{{invoice.invoiceCode}}</span>
+            <span class="invoice-item-right" v-if="invoice.invoiceCode">{{ invoice.invoiceCode }}</span>
             <span class="invoice-item-right" v-else>开票中</span>
           </div>
           <div class="invoice-item">
             <span class="invoice-item-left">发票编号</span>
-            <span class="invoice-item-right" v-if="invoice.invoiceNumber">{{invoice.invoiceNumber}}</span>
+            <span class="invoice-item-right" v-if="invoice.invoiceNumber">{{ invoice.invoiceNumber }}</span>
             <span class="invoice-item-right" v-else>开票中</span>
           </div>
           <div class="invoice-item">
             <span class="invoice-item-left">交费方式</span>
-            <span class="invoice-item-right">{{getInvoiceType(invoice.invoiceTypeId)}}</span>
+            <span class="invoice-item-right">{{ getInvoiceType(invoice.invoiceTypeId) }}</span>
           </div>
           <div class="invoice-item">
             <span class="invoice-item-left">交费单价</span>
-            <span class="invoice-item-right">{{invoice.invoiceUnitPrice}}元/㎡</span>
+            <span class="invoice-item-right">{{ invoice.invoiceUnitPrice }}元/㎡</span>
           </div>
           <div class="invoice-item">
             <span class="invoice-item-left">交费面积</span>
-            <span class="invoice-item-right">{{invoice.invoiceArea}}㎡</span>
+            <span class="invoice-item-right">{{ invoice.invoiceArea }}㎡</span>
           </div>
           <div class="invoice-item">
             <span class="invoice-item-left">交费金额</span>
-            <span class="invoice-item-right">{{invoice.invoiceAmount}}元</span>
+            <span class="invoice-item-right">{{ invoice.invoiceAmount }}元</span>
           </div>
           <div class="invoice-item">
             <span class="invoice-item-left">发票抬头</span>
-            <span class="invoice-item-right">{{invoice.pTitle}}</span>
+            <span class="invoice-item-right">{{ invoice.pTitle }}</span>
           </div>
           <div class="invoice-item" v-if="invoice.invoiceTitleTypeId == 2">
             <span class="invoice-item-left">税号</span>
-            <span class="invoice-item-right">{{invoice.pTaxNo}}</span>
+            <span class="invoice-item-right">{{ invoice.pTaxNo }}</span>
           </div>
           <div class="invoice-item" v-if="invoice.invoiceTitleTypeId == 2 && invoice.expanded">
             <span class="invoice-item-left">开户行</span>
-            <span class="invoice-item-right">{{invoice.pBankName}}</span>
+            <span class="invoice-item-right">{{ invoice.pBankName }}</span>
           </div>
           <div class="invoice-item" v-if="invoice.invoiceTitleTypeId == 2 && invoice.expanded">
             <span class="invoice-item-left">账号</span>
-            <span class="invoice-item-right">{{invoice.pAccountNo}}</span>
+            <span class="invoice-item-right">{{ invoice.pAccountNo }}</span>
           </div>
           <div class="invoice-item" v-if="invoice.invoiceTitleTypeId == 2 && invoice.expanded">
             <span class="invoice-item-left">地址</span>
-            <span class="invoice-item-right">{{invoice.pAddress}}</span>
+            <span class="invoice-item-right">{{ invoice.pAddress }}</span>
           </div>
           <div class="invoice-item" v-if="invoice.invoiceTitleTypeId == 2 && invoice.expanded">
             <span class="invoice-item-left">电话</span>
-            <span class="invoice-item-right">{{invoice.pTelephone}}</span>
+            <span class="invoice-item-right">{{ invoice.pTelephone }}</span>
           </div>
           <div class="invoice-toggle" v-if="invoice.invoiceTitleTypeId == 2">
             <img src="@/assets/icon/ty_icon_retract.png" @click="toggleInvoice(invoice)" v-if="invoice.expanded">
@@ -85,8 +85,8 @@
       </div>
     </div>
     <div class="order">
-      <span>发票数量&nbsp;<font color="red">{{record.invoiceQty}}</font>&nbsp;张</span>
-      <span>订单金额&nbsp;<font color="red">{{record.totalAmount}}</font>&nbsp;元</span>
+      <span>发票数量&nbsp;<font color="red">{{ record.invoiceQty }}</font>&nbsp;张</span>
+      <span>订单金额&nbsp;<font color="red">{{ record.totalAmount }}</font>&nbsp;元</span>
     </div>
   </div>
 </template>
@@ -148,7 +148,7 @@ export default {
     initPage: function () {
       orderApi.getPaymentOrder(this.orderId).then(result => {
         if (result.status === 1) {
-          let record = result.data;
+          const record = result.data;
           // 发票数量
           let invoiceQty = 0;
           for (let index = 0; index < record.details.length; index++) {

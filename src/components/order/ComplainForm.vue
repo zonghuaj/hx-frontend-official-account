@@ -2,7 +2,7 @@
   <div class="content">
     <div class="nav">
       <img src="@/assets/icon/ty_icon_back.png" @click="goBack" />
-      <span>供热投诉（{{record.documentNo}}）单详情</span>
+      <span>供热投诉（{{ record.documentNo }}）单详情</span>
     </div>
     <house-card :curHouse="curHouse"></house-card>
     <div class="order">
@@ -12,19 +12,19 @@
       </div>
       <div class="order-category">
         <span class="order-category-left">投诉类别</span>
-        <span class="order-category-right">{{record.type}}</span>
+        <span class="order-category-right">{{ record.type }}</span>
       </div>
       <div class="order-content">
         <span class="order-content-up">投诉内容</span>
-        <span class="order-content-down">{{record.compliantContent}}</span>
+        <span class="order-content-down">{{ record.compliantContent }}</span>
       </div>
       <div class="order-contact" v-if="expanded">
         <span class="order-contact-left">联系人</span>
-        <span class="order-contact-right">{{record.contact}}</span>
+        <span class="order-contact-right">{{ record.contact }}</span>
       </div>
       <div class="order-mobile" v-if="expanded">
         <span class="order-mobile-left">联系电话</span>
-        <span class="order-mobile-right">{{record.mobile}}</span>
+        <span class="order-mobile-right">{{ record.mobile }}</span>
       </div>
       <div class="order-voice" v-if="expanded">
         <span class="order-voice-left">语音描述</span>
@@ -54,7 +54,7 @@
       </div>
       <el-timeline>
         <el-timeline-item :timestamp="item.pointTime" v-for="(item, index) in record.progressList" :key="index">
-          {{item.event}}&nbsp;&nbsp;{{item.message}}
+          {{ item.event }}&nbsp;&nbsp;{{ item.message }}
         </el-timeline-item>
       </el-timeline>
     </div>

@@ -3,7 +3,7 @@
     <div class="search">
       <div class="house-company">
         <span class="house-company-left">供热公司</span>
-        <span class="house-company-right">{{company.companyName}}</span>
+        <span class="house-company-right">{{ company.companyName }}</span>
       </div>
       <div class="house-address">
         <span class="house-address-left">房屋地址</span>
@@ -15,7 +15,7 @@
         </div>
       </div>
     </div>
-    <span class="total" v-if="total > 0">共&nbsp;<font color="red">{{total}}</font>&nbsp;个房屋</span>
+    <span class="total" v-if="total > 0">共&nbsp;<font color="red">{{ total }}</font>&nbsp;个房屋</span>
     <div class="house-list" v-if="houseList.length > 0">
       <van-collapse v-model="activeName" accordion>
         <van-list v-model="loading" :finished="finished" finished-text="没有更多了" @load="onLoad">
@@ -24,21 +24,21 @@
             <div class="house-item">
               <div class="house-item-left">
                 <span class="house-item-left-left">小区楼号</span>
-                <span class="house-item-left-right">{{item.regionName + item.buildingName}}</span>
+                <span class="house-item-left-right">{{ item.regionName + item.buildingName }}</span>
               </div>
               <div class="house-item-right">
                 <span class="house-item-left-left">供热卡号</span>
-                <span class="house-item-left-right">{{item.cardCode}}</span>
+                <span class="house-item-left-right">{{ item.cardCode }}</span>
               </div>
             </div>
             <div class="house-item">
               <div class="house-item-left">
                 <span class="house-item-left-left">户主姓名</span>
-                <span class="house-item-left-right">{{item.maskCustomerName == '无' ? '' : item.maskCustomerName}}</span>
+                <span class="house-item-left-right">{{ item.maskCustomerName == '无' ? '' : item.maskCustomerName }}</span>
               </div>
               <div class="house-item-right">
                 <span class="house-item-left-left">房屋面积</span>
-                <span class="house-item-left-right">{{item.areas[0].propertyArea}}m²</span>
+                <span class="house-item-left-right">{{ item.areas[0].propertyArea }}m²</span>
               </div>
             </div>
             <div class="house-label">
@@ -124,7 +124,7 @@ export default {
       this.getHouseList();
     },
     getHouseList: function () {
-      let params = {
+      const params = {
         companyId: this.company.companyId,
         address: this.address,
         page: this.page++,
@@ -133,9 +133,9 @@ export default {
       getAddressHouse(params).then(result => {
         if (result.data.status === 1) {
           this.total = result.data.data.total;
-          let records = result.data.data.records;
+          const records = result.data.data.records;
           for (let index = 0; index < records.length; index++) {
-            let maskCustomerName = records[index].maskCustomerName;
+            const maskCustomerName = records[index].maskCustomerName;
             if (maskCustomerName && maskCustomerName !== '无') {
               records[index].relationLabel = maskCustomerName.charAt(maskCustomerName.length - 1);
             } else {
@@ -154,14 +154,14 @@ export default {
       });
     },
     doSave: function (item) {
-      let reg = /^.{1,5}$/;
+      const reg = /^.{1,5}$/;
       if (reg.test(item.relationLabel)) {
         this.$toast.loading({
           duration: 0,
           forbidClick: true,
           message: '保存中...'
         });
-        let params = {
+        const params = {
           relationLabel: item.relationLabel,
           isDefault: this.isDefault ? 1 : 0
         };

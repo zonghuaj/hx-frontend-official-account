@@ -2,7 +2,7 @@
   <div class="content">
     <div class="nav">
       <img src="@/assets/icon/ty_icon_back.png" @click="goBack" />
-      <span>停供申请（{{record.documentNo}}）单详情</span>
+      <span>停供申请（{{ record.documentNo }}）单详情</span>
     </div>
     <house-card :curHouse="curHouse"></house-card>
     <div class="order">
@@ -12,23 +12,23 @@
       </div>
       <div class="order-owner">
         <span class="order-owner-left">户主姓名</span>
-        <span class="order-owner-right">{{record.ownerName}}</span>
+        <span class="order-owner-right">{{ record.ownerName }}</span>
       </div>
       <div class="order-identifyNo">
         <span class="order-identifyNo-left">户主身份证号</span>
-        <span class="order-identifyNo-right">{{record.identifyNo}}</span>
+        <span class="order-identifyNo-right">{{ record.identifyNo }}</span>
       </div>
       <div class="order-contact">
         <span class="order-contact-left">联系人</span>
-        <span class="order-contact-right">{{record.contact}}</span>
+        <span class="order-contact-right">{{ record.contact }}</span>
       </div>
       <div class="order-telephone">
         <span class="order-telephone-left">联系电话</span>
-        <span class="order-telephone-right">{{record.telephone}}</span>
+        <span class="order-telephone-right">{{ record.telephone }}</span>
       </div>
       <div class="order-remark">
         <span class="order-remark-up">备注</span>
-        <span class="order-remark-down">{{record.remark}}</span>
+        <span class="order-remark-down">{{ record.remark }}</span>
       </div>
       <div class="order-identity">
         <span class="order-identity-up">户主身份证照片</span>
@@ -53,7 +53,7 @@
       </div>
       <el-timeline>
         <el-timeline-item :timestamp="item.pointTime" v-for="(item, index) in record.progressList" :key="index">
-          {{item.event}}&nbsp;&nbsp;{{item.message}}
+          {{ item.event }}&nbsp;&nbsp;{{ item.message }}
         </el-timeline-item>
       </el-timeline>
     </div>
@@ -67,7 +67,7 @@
         <van-rate class="evaluate-level-right" color="#ff6016" void-color="#999999" :readonly="record.isEvaluate == 1" v-model="record.evaluateLevel" />
       </div>
       <textarea class="evaluate-content" placeholder="请输入评价内容" rows="3" v-model="record.evaluateContent" v-if="record.isEvaluate == 0"></textarea>
-      <span class="evaluate-content" v-if="record.isEvaluate == 1 && record.evaluateContent">{{record.evaluateContent}}</span>
+      <span class="evaluate-content" v-if="record.isEvaluate == 1 && record.evaluateContent">{{ record.evaluateContent }}</span>
     </div>
     <div class="btn">
       <van-button text="提交评价" @click="doEvaluate" v-if="record.isEvaluate == 0" />
@@ -151,7 +151,7 @@ export default {
     initPage: function () {
       orderApi.getStopHeating(this.stopHeatingId).then(result => {
         if (result.status === 1) {
-          let record = result.data;
+          const record = result.data;
           if (record.isEvaluate === 0) {
             record.evaluateLevel = 1;
           }
@@ -167,7 +167,7 @@ export default {
         forbidClick: true,
         message: '提交评价中...'
       });
-      let params = {
+      const params = {
         score: this.record.evaluateLevel,
         content: this.record.evaluateContent
       };
@@ -188,7 +188,7 @@ export default {
       this.showYX = true;
     },
     doSend: function () {
-      let regEmail = /^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
+      const regEmail = /^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
       if (!this.receiver) {
         this.$toast('请输入收件人！');
         return;
@@ -201,7 +201,7 @@ export default {
         forbidClick: true,
         message: '发送中...'
       });
-      let params = {
+      const params = {
         resourceId: this.stopHeatingId,
         receiver: this.receiver
       };

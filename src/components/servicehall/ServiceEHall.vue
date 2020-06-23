@@ -8,38 +8,38 @@
       </div>
       <div>
         <van-row>
-            <van-col span="8" class="cell-image pay-image" @click="goCharge">
-              <div>
-                <span>在线缴费</span>
-              </div>
-            </van-col>
-            <van-col span="8" class="cell-image stop-pay-image">
-              <div>
-                <span>停复热办理</span>
-              </div>
-            </van-col>
-            <van-col span="8" class="cell-image repair-image" @click="goRepair">
-              <div>
-                <span>供热报修</span>
-              </div>
-            </van-col>
+          <van-col span="8" class="cell-image pay-image" @click="goCharge">
+            <div>
+              <span>在线缴费</span>
+            </div>
+          </van-col>
+          <van-col span="8" class="cell-image stop-pay-image">
+            <div>
+              <span>停复热办理</span>
+            </div>
+          </van-col>
+          <van-col span="8" class="cell-image repair-image" @click="goRepair">
+            <div>
+              <span>供热报修</span>
+            </div>
+          </van-col>
         </van-row>
         <van-row>
-            <van-col span="8" class="cell-image complain-image" @click="goComplain">
-              <div>
-                <span>供热投诉</span>
-              </div>
-            </van-col>
-            <van-col span="8" class="cell-image infosetting-image">
-              <div>
-                <span>信息维护</span>
-              </div>
-            </van-col>
-            <van-col span="8" class="cell-image invoice-image">
-              <div>
-                <span>发票开具</span>
-              </div>
-            </van-col>
+          <van-col span="8" class="cell-image complain-image" @click="goComplain">
+            <div>
+              <span>供热投诉</span>
+            </div>
+          </van-col>
+          <van-col span="8" class="cell-image infosetting-image">
+            <div>
+              <span>信息维护</span>
+            </div>
+          </van-col>
+          <van-col span="8" class="cell-image invoice-image">
+            <div>
+              <span>发票开具</span>
+            </div>
+          </van-col>
         </van-row>
       </div>
       <div class="query-body">
@@ -129,8 +129,8 @@ export default {
     goBack: function () {
       history.pushState(null, null, document.URL);
       JSSDKLoader().then(wx => {
-        let url = location.href.split('#')[0];
-        let params = {
+        const url = location.href.split('#')[0];
+        const params = {
           url: url
         };
         wxApi.getSignature(params).then(result => {
@@ -206,7 +206,7 @@ export default {
     goStopHeating: function () {
       orderApi.verifyStopHeating(this.curHouse.houseId).then(result => {
         if (result.status === 1) {
-          let other = result.data;
+          const other = result.data;
           this.$router.push({
             name: 'addStopHeating',
             params: {
