@@ -25,5 +25,8 @@ npm run e2e
 
 # run all tests
 npm test
+
+#delete src/components/order delete src/order/index.js
+
 ```
 https://github.com/sunniejs/vue-h5-template // 移动端适配解决方案
